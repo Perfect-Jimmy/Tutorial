@@ -18,6 +18,10 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>tutorial</groupId>
+            <artifactId>tutorial_util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
