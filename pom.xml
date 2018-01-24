@@ -5,6 +5,21 @@
     <groupId>tutorial</groupId>
     <artifactId>tutorial</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>tutorial_domain</module>
+        <module>tutorial_repository</module>
+        <module>tutorial_service</module>
+        <module>tutorial_util</module>
+        <module>tutorial_springboot</module>
+        <module>tutorial_elasticsearch</module>
+        <module>tutorial_redis</module>
+        <module>tutorial_mongo</module>
+        <module>tutorial_rabbitmq</module>
+        <module>tutorial_java</module>
+        <module>tutorial_spring</module>
+        <module>tutorial_jersey</module>
+        <module>tutorial_springcloud</module>
+    </modules>
     <packaging>pom</packaging>
 
     <name>tutorial</name>
