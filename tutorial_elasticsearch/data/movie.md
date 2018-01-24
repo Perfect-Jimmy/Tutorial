@@ -1,8 +1,8 @@
 ### Movie
 > 数据结构设计
 
-Field       | Type    | Description
------------ | ------- | ----------------
+|Field       | Type    | Description
+| :-: | :-: | :-: | 
 id          | Long    | 影片id
 name        | keyword | 片名
 ticket      | Float   | 票价
