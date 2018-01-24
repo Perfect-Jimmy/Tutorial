@@ -14,7 +14,7 @@ releaseDate | Date    | 上映日期
 
 > 测试数据
 ```
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/1?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/1?pretty' -d ' 
 {
   "id": "1",
   "name": "赌神1",
@@ -29,7 +29,7 @@ curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/1?p
   "releaseDate": "1987-3-7"
 }'
   
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/2?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/2?pretty' -d ' 
 {
   "id": "2",
   "name": "赌神2",
@@ -44,7 +44,7 @@ curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/2?p
   "releaseDate": "1994-7-7"
 }'
 
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/3?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/3?pretty' -d ' 
 {
   "id": "3",
   "name": "精武英雄",
@@ -59,7 +59,7 @@ curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/3?p
   "releaseDate": "1994-12-22"
 }'
 
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/4?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/4?pretty' -d ' 
 {
   "id": "4",
   "name": "初恋这件小事",
@@ -74,7 +74,7 @@ curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/4?p
   "releaseDate": "2010-8-12"
 }'
 
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/5?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/5?pretty' -d ' 
 {
   "id": "5",
   "name": "大话西游1:月光宝盒",
@@ -89,7 +89,7 @@ curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/5?p
   "releaseDate": "1995-6-7"
 }'
 
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/6?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/6?pretty' -d ' 
 {
   "id": "6",
   "name": "大话西游2:大圣娶亲",
@@ -104,7 +104,7 @@ curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/6?p
   "releaseDate": "1997-7-8"
 }'
 
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/7?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/7?pretty' -d ' 
 {
   "id": "7",
   "name": "Titanic",
@@ -119,7 +119,7 @@ curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/7?p
   "releaseDate": "1997-12-19"
 }'
 
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/8?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/8?pretty' -d ' 
 {
   "id": "8",
   "name": "中华赌侠",
@@ -134,7 +134,7 @@ curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/8?p
   "releaseDate": "2000-8-31"
 }'
 
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/9?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/9?pretty' -d ' 
 {
   "id": "9",
   "name": "羞羞的铁拳",
@@ -149,7 +149,7 @@ curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/9?p
   "releaseDate": "2017-10-1"
 }'
 
-curl -H "Content-Type:application/json" -XPUT 'localhost:9200/tutorial/movie/10?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/10?pretty' -d ' 
 {
   "id": "10",
   "name": "战狼2",
