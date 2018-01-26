@@ -7,3 +7,13 @@
 > 删除索引 curl -X DELETE 'localhost:9200/tutorial?pretty'
 
 > 查看映射 curl -X GET 'localhost:9200/tutorial/_mapping/movie?pretty'
+
+> 查看分词
+```
+curl  -H "Content-Type:application/json" -XGET "localhost:9200/_analyze?pretty" -d'
+{
+  "analyzer": "standard",
+  "text":     "Set the shape to semi-transparent by calling set_trans(5)"
+}
+'
+```
