@@ -10,7 +10,7 @@
 
 > 查看分词
 ```
-curl  -H "Content-Type:application/json" -XGET "localhost:9200/_analyze?pretty" -d'
+curl  -H "Content-Type:application/json" -X GET "localhost:9200/_analyze?pretty" -d'
 {
   "analyzer": "standard",
   "text":     "Set the shape to semi-transparent by calling set_trans(5)"

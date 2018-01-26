@@ -98,10 +98,11 @@ curl -X GET 'localhost:9200/customer/user/_search?pretty'
 }
 ```
 #### 说明:
-* took:
-* timed_out:
-* _shards:
-* hits:
+* took:查询花费的时间,毫秒单位
+* timed_out:标识查询是否超时
+* _shards:描述了查询分片的信息,查询了多少个分片,成功的分片数量,失败的分片数量
+* hits:搜索的结果,total是全部的满足的文档数目,hits是返回的实际数目(默认是10)
+* _score:文档的分数信息,与排名相关度有关
 
 > 替换文档 PUT
 ```
