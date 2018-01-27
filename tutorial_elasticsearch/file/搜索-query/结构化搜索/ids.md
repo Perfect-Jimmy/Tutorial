@@ -1,4 +1,4 @@
-### Ids Query
+### ids query
 检索指定id的文档.参数type可选,可接受组数,未指定时会检索索引中所有type.
 
 * 检索id为1,3,5的数据

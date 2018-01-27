@@ -1,4 +1,4 @@
-### Fuzzy Query 模糊检索 性能低
+### fuzzy query 模糊检索 性能低
 模糊检索通过计算词项与文档的编辑距离检索数据.
 
 * 搜索name="Titanic"但写错成了"Titanci"

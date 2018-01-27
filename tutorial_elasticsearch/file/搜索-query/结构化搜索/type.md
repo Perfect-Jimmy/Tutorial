@@ -1,4 +1,4 @@
-### Type Query
+### type query
 检索具有指定类型的文档.
 
 * 检索type=movie的数据

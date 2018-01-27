@@ -1,4 +1,4 @@
-### Term Query 单个精确值搜索
+### term query 单个精确值搜索
 
 > 基于dynamic mapping
 
