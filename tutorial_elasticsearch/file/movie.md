@@ -163,6 +163,21 @@ curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/10
   "desc": "故事发生在非洲附近的大海上，主人公冷锋（吴京 饰）遭遇人生滑铁卢，被“开除军籍”，本想漂泊一生的他，正当他打算这么做的时候，一场突如其来的意外打破了他的计划",
   "releaseDate": "2017-10-1"
 }'
+
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/tutorial/movie/11?pretty' -d ' 
+{
+  "id": "11",
+  "name": "钢铁侠1",
+  "leadRole" : ["小罗伯特·唐尼"],
+  "style": "科幻",
+  "zone": {
+      "country": "美国",
+      "city": ""
+  },
+  "grade": 7.5,
+  "desc": "斯塔克军火公司是美军在全球范围内第一大军火供应商，其新任掌门人托尼•斯塔克风流倜傥，天资聪颖",
+  "releaseDate": "2008-10-9"
+}'
 ```
 
 
