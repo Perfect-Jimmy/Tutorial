@@ -59,4 +59,29 @@ public class IndexTest {
         jestClient.execute(index.build());
     }
 
+    /**
+     * 优化索引
+     * @throws IOException
+     */
+    @Test
+    public void optimizeIndex() throws IOException {
+        //TODO
+      /*  Optimize optimize = new Optimize.Builder().build();
+        JestResult jestResult = jestClient.execute(optimize);
+        System.out.println(jestResult.getJsonString());*/
+    }
+
+    /**
+     * 索引是否存在
+     * @throws IOException
+     */
+    @Test
+    public void isExistIndex() throws IOException {
+        //TODO
+        /*IndicesExists indicesExists = new IndicesExists.Builder("tutorial").build();
+        JestResult jestResult = jestClient.execute(indicesExists);
+        System.out.println(jestResult.getJsonString());*/
+    }
+
+
 }
