@@ -7,6 +7,9 @@ import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.*;
 import io.searchbox.params.Parameters;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,5 +209,27 @@ public class DocumentTest {
                 .index("twitter")
                 .type("tweet")
                 .build());*/
+    }
+
+    /**
+     * count
+     * @throws IOException
+     */
+    @Test
+    public void getCount() throws IOException {
+        String index = "tutorial";
+        String type = "movie";
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders.boolQuery()
+                                   .must(QueryBuilders.termsQuery("name", "赌"));
+        searchSourceBuilder.query(queryBuilder);
+
+        Count count = new Count.Builder()
+                .addIndex(index)
+                .addType(type)
+                .query(searchSourceBuilder.toString())
+                .build();
+        CountResult countResult = jestClient.execute(count);
+        System.out.println(countResult.getCount());
     }
 }
