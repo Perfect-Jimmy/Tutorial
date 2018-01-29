@@ -25,7 +25,9 @@ public class ElasticsearchConfiguration {
                 .defaultMaxTotalConnectionPerRoute(10)
                 // and no more 20 connections in total
                 .maxTotalConnection(10)
-                        .build());
+              //.readTimeout()
+              //.connTimeout()
+                .build());
         JestClient jestClient = factory.getObject();
         System.out.println(jestClient);
         return jestClient;
