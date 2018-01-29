@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * Created by Jimmy. 2018/1/29  14:51
+ * http://blog.csdn.net/vinegar93/article/details/53223819
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ElasticsearchStart.class)

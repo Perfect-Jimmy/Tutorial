@@ -181,12 +181,16 @@ public class DocumentTest {
         System.out.println(movie);
         Update update = new Update.Builder(movie).index("twitter").type("tweet").id("1").build();
         jestClient.execute(update);*/
-        String script = "{\n" +
-                        "\"script\" : \"ctx._source.tags += movie\",\n" +
-                        "\"params\" : {\n" +
-                        "\"style\" : \"爱情\"\n" +
-                        "}\n" +
-                        "}";
+        String script = "{" +
+                "    \"doc\" : {" +
+                "        \"style\" : \""+"爱情"+"\"," +
+             /*   "        \"content\" : \""+article.getContent()+"\"," +
+                "        \"author\" : \""+article.getAuthor()+"\"," +
+                "        \"source\" : \""+article.getSource()+"\"," +
+                "        \"url\" : \""+article.getUrl()+"\"," +
+                "        \"pubdate\" : \""+new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(article.getPubdate())+"\"" +*/
+                "    }" +
+                "}";
         jestClient.execute(new Update.Builder(script).index("twitter").type("tweet").id("1").build());
     }
 

@@ -16,6 +16,8 @@ import java.io.IOException;
 /**
  * Created by Jimmy. 2018/1/29  14:13
  * https://github.com/searchbox-io/Jest/tree/master/jest
+ * https://github.com/searchbox-io/Jest/tree/master/jest/src/test/java/io/searchbox/core
+ * http://blog.csdn.net/u010466329/article/details/75020956
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ElasticsearchStart.class)
