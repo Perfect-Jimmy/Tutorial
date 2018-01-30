@@ -39,3 +39,19 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_s
 }
 '
 ```
+
+* 检索最近一年的电影  "gt": "now-30d"  //todo releaseDate设置成date类型
+```
+curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_search?pretty' -d '
+{
+  "query": {
+       "range":{
+           "releaseDate":{
+               "from" : "now-365d", 
+               "to" : "now" 
+           }
+       }
+  }
+}
+'
+```
