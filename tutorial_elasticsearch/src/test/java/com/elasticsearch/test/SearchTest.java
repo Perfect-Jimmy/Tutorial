@@ -8,6 +8,7 @@ import io.searchbox.core.SearchResult;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Jimmy. 2018/1/29  16:58
@@ -85,8 +87,8 @@ public class SearchTest {
         QueryBuilder queryBuilder = QueryBuilders
                 .termQuery("name.keyword", "赌神1");
         searchSourceBuilder.query(queryBuilder);
-        searchSourceBuilder.size(10);
         searchSourceBuilder.from(0);
+        searchSourceBuilder.size(10);
         String query = searchSourceBuilder.toString();
         System.out.println(query);
         Search search = new Search.Builder(query).addIndex(INDEX).addType(TYPE).build();
@@ -253,6 +255,120 @@ public class SearchTest {
         List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
         for(SearchResult.Hit<Movie, Void> hit : hits){
             System.out.println(hit.source);
+        }
+    }
+
+    /**
+     * matchAll 查询 默认返回10条
+     * @throws IOException
+     */
+    @Test
+    public void matchAllTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        //
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        System.out.println(result.getTotal());
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            System.out.println(hit.source);
+        }
+    }
+
+    /**
+     * highLight
+     * @throws IOException
+     */
+    @Test
+    public void highLightTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders.matchQuery("name", "西游");
+        //
+        HighlightBuilder highlightBuilder = new HighlightBuilder();
+        highlightBuilder.field("name");//高亮name
+        highlightBuilder.preTags("<em>").postTags("</em>");//高亮标签
+        highlightBuilder.fragmentSize(500);//高亮内容长度
+        searchSourceBuilder.highlighter(highlightBuilder);
+        //
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        System.out.println(result.getTotal());
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            Movie movie = hit.source;
+            System.out.println(movie);
+            //获取高亮后的内容
+            Map<String, List<String>> highlight = hit.highlight;
+            List<String> names = highlight.get("name");//高亮后的name
+            System.out.println("names=="+names);
+            if(names!=null){
+                System.out.println("highLight name:"+names.get(0));
+                movie.setName(names.get(0));
+            }
+        }
+    }
+
+    /**
+     * multiMatch
+     * @throws IOException
+     */
+    @Test
+    public void multiMatchTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders.multiMatchQuery("刘德华","leadRole","desc");
+        //
+        HighlightBuilder highlightLeadRole = new HighlightBuilder();
+        highlightLeadRole.field("leadRole");//高亮leadRole
+        highlightLeadRole.preTags("<em>").postTags("</em>");//高亮标签
+        highlightLeadRole.fragmentSize(500);//高亮内容长度
+        searchSourceBuilder.highlighter(highlightLeadRole);
+        //
+       /* HighlightBuilder highlightDesc = new HighlightBuilder();
+        highlightDesc.field("desc");//高亮name
+        highlightDesc.preTags("<em>").postTags("</em>");//高亮标签
+        highlightDesc.fragmentSize(500);//高亮内容长度
+        searchSourceBuilder.highlighter(highlightDesc);*/
+        //
+
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        System.out.println(result.getTotal());
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            Movie movie = hit.source;
+            System.out.println(movie);
+            //获取高亮后的内容
+            Map<String, List<String>> highlight = hit.highlight;
+            if(highlight != null){
+                System.out.println("map:"+highlight);
+                if(highlight.get("leadRole") != null){//高亮后的leadRoles
+                    List<String> leadRoles = highlight.get("leadRole");
+                    System.out.println("leadRoles:"+leadRoles);
+                    System.out.println("highLight leadRole:"+leadRoles.get(0));
+                }
+
+                if(highlight.get("desc") != null){//高亮后的desc
+                    List<String> descs = highlight.get("desc");
+                    System.out.println("descs:"+descs);
+                    System.out.println("highLight desc:"+descs.get(0));
+                }
+            }
         }
     }
 }
