@@ -19,6 +19,9 @@
         <module>tutorial_spring</module>
         <module>tutorial_jersey</module>
         <module>tutorial_springcloud</module>
+        <module>tutorial_nio</module>
+        <module>tutorial_jersey</module>
+        <module>tutorial_netty</module>
     </modules>
     <packaging>pom</packaging>
 
