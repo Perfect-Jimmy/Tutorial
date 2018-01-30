@@ -17,7 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by Jimmy. 2018/1/29  15:22
@@ -152,7 +154,7 @@ public class DocumentTest {
      */
     @Test
     public void getDocument() throws IOException {
-        Get get = new Get.Builder("twitter", "100").type("tweet").build();
+        Get get = new Get.Builder("twitter", "14").type("tweet").build();
         JestResult jestResult = jestClient.execute(get);
         System.out.println(jestResult.getSourceAsString());
     }
@@ -175,26 +177,34 @@ public class DocumentTest {
      */
     @Test
     public void modifyDocument() throws IOException {
-       /* Get get = new Get.Builder("twitter", "1").type("tweet").build();
-        JestResult jestResult = jestClient.execute(get);
-        Movie movie = jestResult.getSourceAsObject(Movie.class);
-        System.out.println(movie);
-        //更新
+        Movie movie = new Movie();
+        movie.setId(14L);
+        movie.setName("test");
+        movie.setLeadRole(new String[]{"刘德华","黎明"});
         movie.setStyle("爱情");
-        System.out.println(movie);
-        Update update = new Update.Builder(movie).index("twitter").type("tweet").id("1").build();
-        jestClient.execute(update);*/
+        movie.setGrade(7.8F);
+        Zone zone = new Zone();
+        zone.setCountry("中国");
+        zone.setCity("香港");
+        movie.setZone(zone);
+        movie.setDesc("这是测试");
+        movie.setReleaseDate("2018-09-07");
+
         String script = "{" +
                 "    \"doc\" : {" +
-                "        \"style\" : \""+"爱情"+"\"," +
-             /*   "        \"content\" : \""+article.getContent()+"\"," +
-                "        \"author\" : \""+article.getAuthor()+"\"," +
-                "        \"source\" : \""+article.getSource()+"\"," +
-                "        \"url\" : \""+article.getUrl()+"\"," +
-                "        \"pubdate\" : \""+new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(article.getPubdate())+"\"" +*/
+                "        \"id\" : \""+movie.getId()+"\"," +
+                "        \"name\" : \""+movie.getName()+"\"," +
+                "        \"leadRole\" : \""+movie.getLeadRole()+"\"," +
+                "        \"style\" : \""+movie.getStyle()+"\"," +
+                "        \"grade\" : \""+movie.getGrade()+"\"," +
+              //"        \"zone\" : \""+zone+"\"," +
+                "        \"desc\" : \""+movie.getDesc()+"\"," +
+                "        \"releaseDate\" : \""+new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date())+"\"" +
                 "    }" +
                 "}";
-        jestClient.execute(new Update.Builder(script).index("twitter").type("tweet").id("1").build());
+        Update update = new Update.Builder(script).index("twitter").type("tweet").id("14").build();
+        JestResult result = jestClient.execute(update);
+        System.out.println(result.getJsonString());
     }
 
     /**
