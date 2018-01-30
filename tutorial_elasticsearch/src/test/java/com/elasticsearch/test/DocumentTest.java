@@ -3,6 +3,8 @@ package com.elasticsearch.test;
 import com.elasticsearch.ElasticsearchStart;
 import com.elasticsearch.domain.Movie;
 import com.elasticsearch.domain.Zone;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.*;
@@ -185,19 +187,25 @@ public class DocumentTest {
         movie.setGrade(7.8F);
         Zone zone = new Zone();
         zone.setCountry("中国");
-        zone.setCity("香港");
+        zone.setCity("台湾");
         movie.setZone(zone);
         movie.setDesc("这是测试");
         movie.setReleaseDate("2018-09-07");
 
+        Gson gson = new GsonBuilder().create();
+        String leadRoleArray = gson.toJson(new String[]{"刘德华","黎明","张学友"});
+        System.out.println(leadRoleArray);
+
+        String zoneStr = gson.toJson(zone);
+        System.out.println(zoneStr);
         String script = "{" +
                 "    \"doc\" : {" +
                 "        \"id\" : \""+movie.getId()+"\"," +
                 "        \"name\" : \""+movie.getName()+"\"," +
-                "        \"leadRole\" : \""+movie.getLeadRole()+"\"," +
+                "        \"leadRole\" : "+leadRoleArray+"," +
                 "        \"style\" : \""+movie.getStyle()+"\"," +
                 "        \"grade\" : \""+movie.getGrade()+"\"," +
-              //"        \"zone\" : \""+zone+"\"," +
+                "        \"zone\" : "+zoneStr+"," +
                 "        \"desc\" : \""+movie.getDesc()+"\"," +
                 "        \"releaseDate\" : \""+new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date())+"\"" +
                 "    }" +

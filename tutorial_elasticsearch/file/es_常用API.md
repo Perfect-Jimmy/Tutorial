@@ -8,6 +8,8 @@
 
 > 查看映射 curl -X GET 'localhost:9200/tutorial/_mapping/movie?pretty'
 
+> ID查询  curl -X GET 'localhost:9200/tutorial/employee/1?pretty'
+
 > 查看分词
 ```
 curl  -H "Content-Type:application/json" -X GET "localhost:9200/_analyze?pretty" -d'
