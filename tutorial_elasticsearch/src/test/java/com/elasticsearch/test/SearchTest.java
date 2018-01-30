@@ -5,6 +5,7 @@ import com.elasticsearch.domain.Movie;
 import io.searchbox.client.JestClient;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Test;
@@ -22,9 +23,16 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ElasticsearchStart.class)
 public class SearchTest {
+    public static final String INDEX ="tutorial";
+    public static final String TYPE  ="movie";
+
     @Autowired
     private JestClient jestClient;
 
+    /**
+     * Search
+     * @throws IOException
+     */
     @Test
     public void searchTest1() throws IOException {
         String query = "{\"query\": {\n" +
@@ -67,4 +75,184 @@ public class SearchTest {
         System.out.println(hits.size());
     }
 
+    /**
+     * term 单值完全匹配查询,分页
+     * @throws IOException
+     */
+    @Test
+    public void termTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders
+                .termQuery("name.keyword", "赌神1");
+        searchSourceBuilder.query(queryBuilder);
+        searchSourceBuilder.size(10);
+        searchSourceBuilder.from(0);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).addType(TYPE).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        System.out.println(hits.size());
+    }
+
+    /**
+     * terms 多值完全匹配查询
+     * @throws IOException
+     */
+    @Test
+    public void termsTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders
+                .termsQuery("name.keyword", "赌神1","精武英雄");
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).addType(TYPE).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            System.out.println(hit.source);
+        }
+    }
+
+    /**
+     * wildcard 通配符查询
+     * @throws IOException
+     */
+    @Test
+    public void wildcardTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders
+                .wildcardQuery("name.keyword", "*西游*");
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).addType(TYPE).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            System.out.println(hit.source);
+        }
+    }
+
+    /**
+     * prefix 查询
+     * @throws IOException
+     */
+    @Test
+    public void prefixTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders
+                .prefixQuery("name.keyword", "大话");
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).addType(TYPE).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            System.out.println(hit.source);
+        }
+    }
+
+    /**
+     * range 查询
+     * @throws IOException
+     */
+    @Test
+    public void rangeTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders
+                .rangeQuery("grade")
+                .gt("7.0")
+                .lt("8.8")
+                .includeLower(true)
+                .includeUpper(true);
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).addType(TYPE).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            System.out.println(hit.source);
+        }
+    }
+
+    /**
+     * fuzzy 查询
+     * @throws IOException
+     */
+    @Test
+    public void fuzzyTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders
+                .fuzzyQuery("name.keyword","Titanci");
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).addType(TYPE).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            System.out.println(hit.source);
+        }
+    }
+
+    /**
+     * bool 查询
+     * @throws IOException
+     */
+    @Test
+    public void boolTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery("name.keyword", new String[]{"赌神2","初恋这件小事"}))
+                .must(QueryBuilders.rangeQuery("grade").gte("8.0").lte("10.0"));
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).addType(TYPE).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            System.out.println(hit.source);
+        }
+    }
+
+    /**
+     * stringQuery 查询
+     * @throws IOException
+     */
+    @Test
+    public void stringQueryTest() throws IOException {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders.queryStringQuery("").escape(true);
+        //
+        searchSourceBuilder.query(queryBuilder);
+        String query = searchSourceBuilder.toString();
+        System.out.println(query);
+        Search search = new Search.Builder(query).addIndex(INDEX).addType(TYPE).build();
+        //
+        SearchResult result = jestClient.execute(search);
+        //
+        List<SearchResult.Hit<Movie, Void>> hits = result.getHits(Movie.class);
+        for(SearchResult.Hit<Movie, Void> hit : hits){
+            System.out.println(hit.source);
+        }
+    }
 }
