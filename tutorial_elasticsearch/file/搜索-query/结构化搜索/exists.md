@@ -6,13 +6,13 @@
 2. []
 3. [null]
 
-* 以下情况会检索到搜索数据,因为name字段都有值
+* 以下都可以检索到文档,因为title字段都有值
 ```
-curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_search?pretty' -d '
+curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?pretty' -d '
 {
   "query": {
        "exists":{
-          "field":"name"
+          "field":"title"
        }
   }
 }
@@ -22,7 +22,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_s
 
 * 以下情况检索不到数据,因为没有totalPrice字段
 ```
-curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_search?pretty' -d '
+curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?pretty' -d '
 {
   "query": {
        "exists":{
@@ -31,4 +31,12 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_s
   }
 }
 '
+```
+结果:
+```
+"hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
 ```

@@ -1,57 +1,61 @@
 ### prefix query 前缀匹配  性能低
 检索某个字段中以给到前缀开始的文档.
 
-* 检索name中以"大话"为前缀的数据
+* 检索title中以"Spring"为前缀的数据
 ```
-curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_search?pretty' -d '
+curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?pretty' -d '
 {
   "query": {
        "prefix":{
-          "name.keyword":"大话"
+          "title.keyword":"Spring"
        }
-  }
+  },
+  "_source":["id","title"]
 }
 '
 ```
-
-* 检索name中以"Ti"为前缀的数据
+结果:
 ```
-curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_search?pretty' -d '
+"hits" : {
+    "total" : 2,
+    "max_score" : 1.0,
+    "hits" : [
+      {
+        "_index" : "es",
+        "_type" : "blog",
+        "_id" : "8",
+        "_score" : 1.0,
+        "_source" : {
+          "id" : 8,
+          "title" : "Springboot教程"
+        }
+      },
+      {
+        "_index" : "es",
+        "_type" : "blog",
+        "_id" : "2",
+        "_score" : 1.0,
+        "_source" : {
+          "id" : 2,
+          "title" : "Spring In Action"
+        }
+      }
+    ]
+  }
+```
+
+* 检索title中以"Tutorial"为前缀的数据
+```
+curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?pretty' -d '
 {
   "query": {
        "prefix":{
-          "name.keyword":"Ti"
+          "title.keyword":"Tutorial"
        }
-  }
-}
-'
-```
-结果:有数据
-
-* 检索name中以"ti"为前缀的数据
-```
-curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_search?pretty' -d '
-{
-  "query": {
-       "prefix":{
-          "name.keyword":"ti"
-       }
-  }
+  },
+  "_source":["id","title"]
 }
 '
 ```
 结果:无数据
-
-* 检索name中以"Kate"为前缀的数据
-curl -H "Content-Type:application/json" -X GET 'localhost:9200/tutorial/movie/_search?pretty' -d '
-{
-  "query": {
-       "prefix":{
-          "leadRole.keyword":"Kate"
-       }
-  }
-}
-'
-结果:有数据
-
 
