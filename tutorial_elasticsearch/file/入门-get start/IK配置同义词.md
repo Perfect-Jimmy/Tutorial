@@ -15,11 +15,12 @@ http://blog.csdn.net/fenglailea/article/details/56845892
 
 > 配置方式
 
-1. 映射:阿迪、阿迪达斯和adidas的token将会转换为Adidas存入倒排索引中
+1. 映射
+阿迪、阿迪达斯和adidas的token将会转换为Adidas存入倒排索引中
 ```
 阿迪, 阿迪达斯, adidas => Adidas
 ```
-2. 对等
+2. 对等  
 当expand为true时,当出现以下任何一个token,三个token都会存入倒排索引中
 当expand为false时,当出现以下任何一个token,第一个token也就是Nike会存入倒排索引中
 ```
