@@ -9,10 +9,12 @@ http://blog.csdn.net/zhangbin666/article/details/73348160
 http://blog.csdn.net/fenglailea/article/details/56845892
 
 > 配置规则
+
 1. Solr synonyms
 2. WordNet synonyms
 
 > 配置方式
+
 1. 映射:阿迪、阿迪达斯和adidas的token将会转换为Adidas存入倒排索引中
 ```
 阿迪, 阿迪达斯, adidas => Adidas
