@@ -161,7 +161,7 @@ curl -H "Content-Type:application/json" -X POST 'localhost:9200/customer/user/1/
 
 > 删除文档 
 ```
-curl -H "Content-Type:application/json" -X DELETE 'http://localhost:9200/customer/user/2?pretty'
+curl -H "Content-Type:application/json" -X DELETE 'http://localhost:9200/es/blog/121?pretty'
 ```
 
 > 查询删除:根据查询条件检索出所有需要删除的数据 _delete_by_query

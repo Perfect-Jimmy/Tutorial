@@ -132,12 +132,12 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?p
 
 #### bool组合多个搜索条件如何计算relevance score
 ```
-must和should搜索对应的分数加起来除以must和should的总数.  
+must和should搜索对应的分数加起来除以must和should的总数    
 should是可以影响相关度分数的  
 must是确保必须有这个关键字,同时会根据这个must的条件去计算出document对这个搜索条件的relevance score
 在满足must的基础之上,should中的条件,不匹配也可以,但是如果匹配的更多,那么document的relevance score就会更高
 ```  
-* 检索title必须含有Tutorial,或者title含有教程
+* 检索title必须含有Tutorial,或者title含有教程的文档
 ```
 curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?pretty' -d '
 {

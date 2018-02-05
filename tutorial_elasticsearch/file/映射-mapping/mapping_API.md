@@ -2,5 +2,5 @@
 
 > 查看mapping
 ```
-curl -X GET 'localhost:9200/tutorial/_mapping/movie?pretty'
+curl -X GET 'localhost:9200/es/_mapping/blog?pretty'
 ```

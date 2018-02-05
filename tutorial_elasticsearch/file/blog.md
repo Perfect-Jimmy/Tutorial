@@ -304,4 +304,58 @@ curl -H "Content-Type:application/json" -X PUT 'localhost:9200/es/blog/11?pretty
   "tagNum":3,
   "visible":true
 }'
+
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/es/blog/12?pretty' -d ' 
+{
+  "id": 12,
+  "title": "Java Language Is The Best",
+  "author" : ["Bruce"],
+  "tag": "java",
+  "zone": {
+      "country": "中国",
+      "city": ""
+  },
+  "weekClick": 10,
+  "monthClick": 100,
+  "desc": "I Like This Java Tutorial",
+  "releaseDate": "2018-02-01",
+  "tagNum":1,
+  "visible":true
+}'
+
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/es/blog/13?pretty' -d ' 
+{
+  "id": 13,
+  "title": "Spark Language Is All So Best",
+  "author" : ["Bruce"],
+  "tag": "java",
+  "zone": {
+      "country": "中国",
+      "city": ""
+  },
+  "weekClick": 10,
+  "monthClick": 100,
+  "desc": "But I Like This Java Tutorial",
+  "releaseDate": "2018-02-01",
+  "tagNum":1,
+  "visible":true
+}'
+
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/es/blog/14?pretty' -d ' 
+{
+  "id": 14,
+  "title": "Java Started",
+  "author" : ["Bruce"],
+  "tag": "java",
+  "zone": {
+      "country": "中国",
+      "city": ""
+  },
+  "weekClick": 10,
+  "monthClick": 100,
+  "desc": "This Tutorial is good.",
+  "releaseDate": "2018-02-01",
+  "tagNum":1,
+  "visible":true
+}'
 ```
