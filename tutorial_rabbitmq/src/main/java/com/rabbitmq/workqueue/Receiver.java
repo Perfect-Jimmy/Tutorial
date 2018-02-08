@@ -52,7 +52,7 @@ public class Receiver {
     }
 
     private static void doWork(String message) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(5);
-        LOGGER.info(message+"处理完成--消费者A");
+        TimeUnit.SECONDS.sleep(10);
+        LOGGER.info(message+"处理完成--消费者B");
     }
 }

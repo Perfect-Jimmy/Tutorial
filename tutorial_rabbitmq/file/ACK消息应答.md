@@ -12,3 +12,22 @@
 #### value 
 1. true   处理完成之后返回确认消息
 2. false  纯粹的返回说已经接受到消息
+
+#### work queue 举例
+消费者A 处理任务耗时5s  
+消费者B 处理任务耗时10s  在消费第3条数据的时候关闭程序
+结果:由于消费者B在消费第3条数据的时候关闭了,因此没有给rabbitmq消息应答,此时rabbitmq会把这条消息给另一个消费者A处理.
+```
+2018-02-08 22:38:45.068 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [56] -| hello:1处理完成--消费者A
+2018-02-08 22:38:50.085 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [56] -| hello:3处理完成--消费者A
+2018-02-08 22:38:55.086 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [56] -| hello:5处理完成--消费者A
+2018-02-08 22:39:00.088 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [56] -| hello:7处理完成--消费者A
+2018-02-08 22:39:05.089 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [56] -| hello:9处理完成--消费者A
+2018-02-08 22:39:10.092 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [56] -| hello:6处理完成--消费者A
+2018-02-08 22:39:15.095 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [56] -| hello:8处理完成--消费者A
+2018-02-08 22:39:20.096 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [56] -| hello:10处理完成--消费者A
+-----------------------------------------------------------------------------------------------------------------
+2018-02-08 22:38:50.089 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [56] -| hello:2处理完成--消费者B
+2018-02-08 22:39:00.107 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [56] -| hello:4处理完成--消费者B
+```
+
