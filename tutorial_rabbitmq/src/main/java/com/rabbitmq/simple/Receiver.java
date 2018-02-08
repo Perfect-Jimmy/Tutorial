@@ -1,6 +1,8 @@
 package com.rabbitmq.simple;
 
 import com.rabbitmq.client.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -10,6 +12,8 @@ import java.util.concurrent.TimeoutException;
  * Created by Jimmy. 2018/2/7  16:03
  */
 public class Receiver {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
+
     private final static String QUEUE_NAME = "hello";
 
     public static void main(String[] args) throws IOException, TimeoutException {
@@ -31,22 +35,23 @@ public class Receiver {
                                        AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body, "UTF-8");
 
-                System.out.println(" [x] Received '" + message + "'");
                 System.out.println("consumerTag="+consumerTag);
-                System.out.println("Exchange名字 '" + envelope.getExchange() + "'");
+                System.out.println("deliveryTag="+envelope.getDeliveryTag()+",consumerTag="+consumerTag+",Exchange名字'"+envelope.getExchange() + "'");
                 try {
                     doWork(message);
+                    channel.basicAck(envelope.getDeliveryTag(), false);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         };
 
-        boolean autoAck = true;
+        boolean autoAck = false;
         channel.basicConsume(QUEUE_NAME, autoAck, consumer);
     }
 
-    private static void doWork(String task) throws InterruptedException {
+    private static void doWork(String message) throws InterruptedException {
         TimeUnit.SECONDS.sleep(10);
+        LOGGER.info(message+"处理完成");
     }
 }
