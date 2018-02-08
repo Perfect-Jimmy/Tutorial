@@ -1,5 +1,5 @@
 ### work queue 工作队列(任务队列)
-增加更多的工作程序可以进行并行工作,并且接受的消息平均分配,且这种分配过程是*一次性分配*,并非一个一个分配.
+增加更多的工作程序可以进行并行工作,并且接受的消息平均分配,且这种分配过程是*一次性分配*,并非一个一个分配.  
 **生产者**
 ```
 public class Sender {
@@ -29,7 +29,7 @@ public class Sender {
     }
 }
 ```
-**消费者A**
+**消费者A**  
 处理任务耗时5s
 ```
 public class Receiver {
@@ -73,7 +73,7 @@ public class Receiver {
     }
 }
 ```
-**消费者B**
+**消费者B**  
 处理任务耗时10s  
 ```
 2018-02-08 22:11:56.206 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [55] -| hello:1处理完成--消费者A
