@@ -1,6 +1,6 @@
-package com.tutorial.configuration;
+package com.rabbitmq.configurer;
 
-import com.tutorial.configuration.domain.ThreadPoolParam;
+import com.rabbitmq.configurer.domain.ThreadPoolParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * Created by Jimmy. 2018/1/30  17:09
  */
 @Component
-public class ThreadPoolConfiguration {
+public class ThreadPoolConfigurer {
     @Autowired
     private ThreadPoolParam threadPoolParam;
 

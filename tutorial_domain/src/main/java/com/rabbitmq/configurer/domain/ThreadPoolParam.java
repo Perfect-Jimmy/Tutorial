@@ -1,4 +1,4 @@
-package com.tutorial.configuration.domain;
+package com.rabbitmq.configurer.domain;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,4 +1,4 @@
-package com.rabbitmq.configuration;
+package com.rabbitmq.configurer;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by Jimmy. 2018/2/6  11:23
  */
 @Configuration
-public class RabbitMQConfiguration {
+public class RabbitMQConfigurer {
     //声明队列
     @Bean
     public Queue queue1() {

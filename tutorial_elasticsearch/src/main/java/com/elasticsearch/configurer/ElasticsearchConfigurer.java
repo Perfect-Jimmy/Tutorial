@@ -1,4 +1,4 @@
-package com.elasticsearch.configuration;
+package com.elasticsearch.configurer;
 
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestClientFactory;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by Jimmy. 2018/1/29  11:08
  */
 @Configuration
-public class ElasticsearchConfiguration {
+public class ElasticsearchConfigurer {
     @Value("${spring.elasticsearch.jest.uris}")
     private String uris;
 

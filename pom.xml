@@ -20,8 +20,8 @@
         <module>tutorial_jersey</module>
         <module>tutorial_springcloud</module>
         <module>tutorial_nio</module>
-        <module>tutorial_jersey</module>
         <module>tutorial_netty</module>
+        <module>tutorial_websocket</module>
     </modules>
     <packaging>pom</packaging>
 
