@@ -1,4 +1,4 @@
-package com.rabbitmq.workqueue;
+package com.rabbitmq.workqueue.test;
 
 import com.rabbitmq.client.*;
 import org.slf4j.Logger;

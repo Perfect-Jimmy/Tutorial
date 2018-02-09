@@ -1,4 +1,4 @@
-package com.rabbitmq.direct;
+package com.rabbitmq.direct.test;
 
 import com.rabbitmq.client.*;
 import org.slf4j.Logger;

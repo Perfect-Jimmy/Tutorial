@@ -76,17 +76,17 @@ public class Receiver {
 **消费者B**  
 处理任务耗时10s  
 ```
-2018-02-08 22:11:56.206 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [55] -| hello:1处理完成--消费者A
-2018-02-08 22:12:01.286 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [55] -| hello:3处理完成--消费者A
-2018-02-08 22:12:06.287 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [55] -| hello:5处理完成--消费者A
-2018-02-08 22:12:11.290 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [55] -| hello:7处理完成--消费者A
-2018-02-08 22:12:16.291 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [55] -| hello:9处理完成--消费者A
+2018-02-08 22:11:56.206 |-INFO  [pool-2-thread-4] Receiver [55] -| hello:1处理完成--消费者A
+2018-02-08 22:12:01.286 |-INFO  [pool-2-thread-4] Receiver [55] -| hello:3处理完成--消费者A
+2018-02-08 22:12:06.287 |-INFO  [pool-2-thread-4] Receiver [55] -| hello:5处理完成--消费者A
+2018-02-08 22:12:11.290 |-INFO  [pool-2-thread-5] Receiver [55] -| hello:7处理完成--消费者A
+2018-02-08 22:12:16.291 |-INFO  [pool-2-thread-5] Receiver [55] -| hello:9处理完成--消费者A
 ----------------------------------------------------------------------------------------------------------------
-2018-02-08 22:12:01.207 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [55] -| hello:2处理完成--消费者B
-2018-02-08 22:12:11.225 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [55] -| hello:4处理完成--消费者B
-2018-02-08 22:12:21.227 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [55] -| hello:6处理完成--消费者B
-2018-02-08 22:12:31.229 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [55] -| hello:8处理完成--消费者B
-2018-02-08 22:12:41.230 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [55] -| hello:10处理完成--消费者B
+2018-02-08 22:12:01.207 |-INFO  [pool-2-thread-4] Receiver [55] -| hello:2处理完成--消费者B
+2018-02-08 22:12:11.225 |-INFO  [pool-2-thread-4] Receiver [55] -| hello:4处理完成--消费者B
+2018-02-08 22:12:21.227 |-INFO  [pool-2-thread-5] Receiver [55] -| hello:6处理完成--消费者B
+2018-02-08 22:12:31.229 |-INFO  [pool-2-thread-5] Receiver [55] -| hello:8处理完成--消费者B
+2018-02-08 22:12:41.230 |-INFO  [pool-2-thread-5] Receiver [55] -| hello:10处理完成--消费者B
 ```
 结果:2个消费者平均消费了队列里的消息
 
@@ -206,17 +206,17 @@ public class Receiver {
 ```
 结果:消费者A比消费者B消费的多
 ```
-2018-02-09 10:02:08.754 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [59] -| hello:2处理完成--消费者A
-2018-02-09 10:02:13.777 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [59] -| hello:3处理完成--消费者A
-2018-02-09 10:02:18.787 |-INFO  [pool-2-thread-6] com.rabbitmq.workqueue.Receiver [59] -| hello:4处理完成--消费者A
-2018-02-09 10:02:23.798 |-INFO  [pool-2-thread-7] com.rabbitmq.workqueue.Receiver [59] -| hello:6处理完成--消费者A
-2018-02-09 10:02:28.808 |-INFO  [pool-2-thread-8] com.rabbitmq.workqueue.Receiver [59] -| hello:7处理完成--消费者A
-2018-02-09 10:02:33.819 |-INFO  [pool-2-thread-9] com.rabbitmq.workqueue.Receiver [59] -| hello:9处理完成--消费者A
+2018-02-09 10:02:08.754 |-INFO  [pool-2-thread-4] Receiver [59] -| hello:2处理完成--消费者A
+2018-02-09 10:02:13.777 |-INFO  [pool-2-thread-5] Receiver [59] -| hello:3处理完成--消费者A
+2018-02-09 10:02:18.787 |-INFO  [pool-2-thread-6] Receiver [59] -| hello:4处理完成--消费者A
+2018-02-09 10:02:23.798 |-INFO  [pool-2-thread-7] Receiver [59] -| hello:6处理完成--消费者A
+2018-02-09 10:02:28.808 |-INFO  [pool-2-thread-8] Receiver [59] -| hello:7处理完成--消费者A
+2018-02-09 10:02:33.819 |-INFO  [pool-2-thread-9] Receiver [59] -| hello:9处理完成--消费者A
 ----------------------------------------------------------------------------------------------------------------
-2018-02-09 10:02:13.782 |-INFO  [pool-2-thread-4] com.rabbitmq.workqueue.Receiver [59] -| hello:1处理完成--消费者B
-2018-02-09 10:02:23.808 |-INFO  [pool-2-thread-5] com.rabbitmq.workqueue.Receiver [59] -| hello:5处理完成--消费者B
-2018-02-09 10:02:33.817 |-INFO  [pool-2-thread-6] com.rabbitmq.workqueue.Receiver [59] -| hello:8处理完成--消费者B
-2018-02-09 10:02:43.829 |-INFO  [pool-2-thread-7] com.rabbitmq.workqueue.Receiver [59] -| hello:10处理完成--消费者B
+2018-02-09 10:02:13.782 |-INFO  [pool-2-thread-4] Receiver [59] -| hello:1处理完成--消费者B
+2018-02-09 10:02:23.808 |-INFO  [pool-2-thread-5] Receiver [59] -| hello:5处理完成--消费者B
+2018-02-09 10:02:33.817 |-INFO  [pool-2-thread-6] Receiver [59] -| hello:8处理完成--消费者B
+2018-02-09 10:02:43.829 |-INFO  [pool-2-thread-7] Receiver [59] -| hello:10处理完成--消费者B
 ```
 
 

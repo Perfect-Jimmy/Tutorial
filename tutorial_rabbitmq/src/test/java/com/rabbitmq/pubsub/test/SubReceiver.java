@@ -1,4 +1,4 @@
-package com.rabbitmq.pubsub;
+package com.rabbitmq.pubsub.test;
 
 import com.rabbitmq.client.*;
 import org.slf4j.Logger;
