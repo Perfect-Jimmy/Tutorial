@@ -1,12 +1,11 @@
 package com.rabbitmq.configurer;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by Jimmy. 2018/2/6  11:31
  */
-@Component
+//@Component
 public class Receiver {
 
     @RabbitListener(queues = "hello.queue1")

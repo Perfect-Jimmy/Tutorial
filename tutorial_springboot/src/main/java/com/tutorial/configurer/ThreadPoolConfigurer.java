@@ -1,6 +1,6 @@
-package com.rabbitmq.configurer;
+package com.tutorial.configurer;
 
-import com.rabbitmq.configurer.domain.ThreadPoolParam;
+import com.tutorial.configurer.domain.ThreadPoolParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
