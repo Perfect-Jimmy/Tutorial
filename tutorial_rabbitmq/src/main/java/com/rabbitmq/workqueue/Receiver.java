@@ -27,6 +27,9 @@ public class Receiver {
         Channel channel = connection.createChannel();
         // 声明一个队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        // 公平转发,将发送到下一个还不忙的工作线程
+        int prefetchCount = 1;
+        channel.basicQos(prefetchCount);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
         // 创建队列消费者
         Consumer consumer = new DefaultConsumer(channel) {
@@ -52,7 +55,7 @@ public class Receiver {
     }
 
     private static void doWork(String message) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(10);
-        LOGGER.info(message+"处理完成--消费者B");
+        TimeUnit.SECONDS.sleep(5);
+        LOGGER.info(message+"处理完成--消费者A");
     }
 }
