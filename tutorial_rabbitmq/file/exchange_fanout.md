@@ -1,2 +1,2 @@
 ### exchange fanout
-[publish subscribe](./publish subscribe.md)
+[publish subscribe](publish subscribe.md)
