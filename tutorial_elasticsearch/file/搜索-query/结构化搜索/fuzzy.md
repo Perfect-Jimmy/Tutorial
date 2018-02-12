@@ -47,3 +47,19 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?p
   }
 ```
 
+#### 一般如下使用
+```
+curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?pretty' -d '
+{
+  "query": {
+     "match":{
+         "title.keyword":{
+            "query":"2017冬雪",
+            "fuzziness":"AUTO",
+            "operator":"and"
+         }
+     }
+  }
+}
+'
+```
