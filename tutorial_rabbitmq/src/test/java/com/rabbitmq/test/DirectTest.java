@@ -19,19 +19,37 @@ public class DirectTest {
     private DirectSender directSender;
 
     @Test
-    public void sendDirectMsg(){
+    public void send(){
         directSender.send("hello direct 中文");
     }
 
 
     @Test
-    public void sendDirectPoJo(){
-        Animal animal = new Animal();
-        animal.setId(1L);
-        animal.setName("rabbit");
-        animal.setColor("white");
-        directSender.send(animal);
+    public void convertAndSend(){
+        Animal animal = null;
+        for(Long i=1L;i<=10L;i++){
+            animal = new Animal();
+            animal.setId(i);
+            animal.setName("convertAndSend rabbit");
+            animal.setColor("convertAndSend white");
+            directSender.convertAndSend(animal);
+        }
+       /* StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        stopWatch.stop();
+        stopWatch.getTotalTimeMillis()*/
     }
 
 
+    @Test
+    public void convertSendAndReceive(){
+        Animal animal = null;
+        for(Long i=1L;i<=10L;i++){
+            animal = new Animal();
+            animal.setId(i);
+            animal.setName("convertSendAndReceive rabbit");
+            animal.setColor("convertSendAndReceive white");
+            directSender.convertSendAndReceive(animal);
+        }
+    }
 }

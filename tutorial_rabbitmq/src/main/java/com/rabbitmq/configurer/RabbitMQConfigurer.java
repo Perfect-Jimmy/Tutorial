@@ -13,6 +13,19 @@ public class RabbitMQConfigurer {
     public static final String DIRECT_QUEUE = "direct_queue";
     public static final String FANOUT_QUEUE = "fanout_queue";
     public static final String TOPIC_QUEUE  = "topic_queue";
+
+
+    /*@Bean
+    public ConnectionFactory connectionFactory() {
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("36.111.193.248",5672);
+
+        connectionFactory.setUsername("guest");
+        connectionFactory.setPassword("guest");
+        connectionFactory.setVirtualHost("/");
+        connectionFactory.setPublisherConfirms(true);
+        return connectionFactory;
+    }*/
+
     //rabbitAdmin 用于管理 exchanges, queues and bindings等
    /* @Bean
     RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {

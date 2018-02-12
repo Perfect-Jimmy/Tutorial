@@ -24,6 +24,10 @@ public class DirectSender implements RabbitTemplate.ConfirmCallback, RabbitTempl
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    /**
+     *  被@PostConstruct修饰的方法会在服务器加载Servle的时候运行并且只会被服务器执行一次.
+     *  PostConstruct在构造函数之后执行,init()方法之前执行.
+     */
     @PostConstruct
     public void init() {
         rabbitTemplate.setConfirmCallback(this);
@@ -63,19 +67,40 @@ public class DirectSender implements RabbitTemplate.ConfirmCallback, RabbitTempl
 
     /**
      * 发送消息,不需要实现任何接口,供外部调用
+     * @param str
+     */
+    public void send(String str){
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+     //   LOGGER.info("开始发送消息:{}",str);
+        Message message = new Message(str.getBytes(),null);
+        rabbitTemplate.send(RabbitExchangeType.DIRECT.name(), "key.direct", message, correlationData);
+     //   LOGGER.info("结束发送消息:{}",str);
+    }
+
+    /**
+     * 转换并发送消息.将参数对象转换为org.springframework.amqp.core.Message后发送.
+     * 这个是异步的.消息是否发送成功需要用到ConfirmCallback和ReturnCallback回调函数类确认.
      * @param object
      */
-    public void send(Object object){
-        CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());
-        LOGGER.info("开始发送消息:{}",object);
-        String response = rabbitTemplate.convertSendAndReceive(RabbitExchangeType.DIRECT.name(), "key.direct", object, correlationId).toString();
-        LOGGER.info("结束发送消息:{}",object);
+    public void convertAndSend(Object object){
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+      //  LOGGER.info("开始发送消息:{}",object);
+          rabbitTemplate.convertAndSend(RabbitExchangeType.DIRECT.name(), "key.direct", object, correlationData);
+      //  LOGGER.info("结束发送消息:{}",object);
+    }
+
+    /**
+     * 转换并发送消息,且等待消息者返回响应消息.
+     * 这是一个RPC方法,当发送消息过后,该方法会一直阻塞在哪里等待返回结果,直到请求超时.
+     * 可以通过配置spring.rabbitmq.template.reply-timeout来配置超时时间
+     * @param object
+     */
+    public void convertSendAndReceive(Object object){
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+      //  LOGGER.info("开始发送消息:{}",object);
+        String response = rabbitTemplate.convertSendAndReceive(RabbitExchangeType.DIRECT.name(), "key.direct", object, correlationData).toString();
+      //  LOGGER.info("结束发送消息:{}",object);
         LOGGER.info("消费者响应:{},消息处理完成",response);
     }
 
-   /* rabbitTemplate.send(message); //发消息,参数类型为org.springframework.amqp.core.Message
-      rabbitTemplate.convertAndSend(object); //转换并发送消息.将参数对象转换为org.springframework.amqp.core.Message后发送.
-      这个是异步的.消息是否发送成功需要用到ConfirmCallback和ReturnCallback回调函数类确认.
-      rabbitTemplate.convertSendAndReceive(message)//转换并发送消息,且等待消息者返回响应消息.
-      这是一个RPC方法,当发送消息过后,该方法会一直阻塞在哪里等待返回结果,直到请求超时.可以通过配置spring.rabbitmq.template.reply-timeout来配置超时时间*/
 }
