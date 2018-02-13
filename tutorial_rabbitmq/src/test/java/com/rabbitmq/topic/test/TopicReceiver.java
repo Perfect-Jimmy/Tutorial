@@ -30,7 +30,6 @@ public class TopicReceiver {
         // 1.队列名 2.交换区名 3.routingKey
         int rand = new Random().nextInt(5);
         String routerKey  = ROUTER_KEY_ARR[rand];
-        System.out.println(" [*] LOG INFO : " + routerKey);
         channel.queueBind(queueName, EXCHANGE_NAME, routerKey);
         // 创建队列消费者
         final Consumer consumer = new DefaultConsumer(channel) {

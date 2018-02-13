@@ -4,6 +4,7 @@ import com.tutorial.util.RabbitExchangeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +14,13 @@ import javax.annotation.PostConstruct;
 import java.util.UUID;
 
 /**
- * Created by Jimmy. 2018/2/9  17:52
+ * Created by Jimmy. 2018/2/13  13:56
  * ConfirmCallback接口用于实现消息发送到RabbitMQ交换器后接收ack回调
  * ReturnCallback接口用于实现消息发送到RabbitMQ交换器但无相应队列与交换器绑定时的回调
  */
 @Component
-public class DirectSender implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DirectSender.class);
+public class Producer implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -65,16 +66,16 @@ public class DirectSender implements RabbitTemplate.ConfirmCallback, RabbitTempl
         LOGGER.info("消息发送失败:{}",message.getMessageProperties().getCorrelationIdString());
     }
 
+
+//--------------direct--------------------------------------------------------------------------------------------
     /**
      * 发送消息,不需要实现任何接口,供外部调用
      * @param str
      */
-    public void send(String str){
+    public void send_direct(String str){
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-     //   LOGGER.info("开始发送消息:{}",str);
-        Message message = new Message(str.getBytes(),null);
+        Message message = new Message(str.getBytes(), new MessageProperties());
         rabbitTemplate.send(RabbitExchangeType.DIRECT.name(), "key.direct", message, correlationData);
-     //   LOGGER.info("结束发送消息:{}",str);
     }
 
     /**
@@ -82,11 +83,9 @@ public class DirectSender implements RabbitTemplate.ConfirmCallback, RabbitTempl
      * 这个是异步的.消息是否发送成功需要用到ConfirmCallback和ReturnCallback回调函数类确认.
      * @param object
      */
-    public void convertAndSend(Object object){
+    public void convertAndSend_direct(Object object){
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-      //  LOGGER.info("开始发送消息:{}",object);
-          rabbitTemplate.convertAndSend(RabbitExchangeType.DIRECT.name(), "key.direct", object, correlationData);
-      //  LOGGER.info("结束发送消息:{}",object);
+        rabbitTemplate.convertAndSend(RabbitExchangeType.DIRECT.name(), "key.direct", object, correlationData);
     }
 
     /**
@@ -95,12 +94,46 @@ public class DirectSender implements RabbitTemplate.ConfirmCallback, RabbitTempl
      * 可以通过配置spring.rabbitmq.template.reply-timeout来配置超时时间
      * @param object
      */
-    public void convertSendAndReceive(Object object){
+    public void convertSendAndReceive_direct(Object object){
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-      //  LOGGER.info("开始发送消息:{}",object);
         String response = rabbitTemplate.convertSendAndReceive(RabbitExchangeType.DIRECT.name(), "key.direct", object, correlationData).toString();
-      //  LOGGER.info("结束发送消息:{}",object);
-        LOGGER.info("消费者响应:{},消息处理完成",response);
+        LOGGER.info("direct 消费者响应:{},消息处理完成",response);
     }
 
+//--------------fanout--------------------------------------------------------------------------------------------
+
+    public void send_fanout(String str) {
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        Message message = new Message(str.getBytes(), new MessageProperties());
+        rabbitTemplate.send(RabbitExchangeType.FANOUT.name(),"", message, correlationData);
+    }
+
+    public void convertAndSend_fanout(Object object) {
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        rabbitTemplate.convertAndSend(RabbitExchangeType.FANOUT.name(), "", object, correlationData);
+    }
+
+    public void convertSendAndReceive_fanout(Object object) {
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        String response = rabbitTemplate.convertSendAndReceive(RabbitExchangeType.FANOUT.name(), "", object, correlationData).toString();
+        LOGGER.info("fanout 消费者响应:{},消息处理完成", response);
+    }
+
+//--------------topic--------------------------------------------------------------------------------------------
+
+    public void send_topic(String routingKey,String str) {
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        Message message = new Message(str.getBytes(), new MessageProperties());
+        rabbitTemplate.send(RabbitExchangeType.TOPIC.name(),routingKey, message, correlationData);
+    }
+
+    public void convertAndSend_topic(String routingKey,Object object) {
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        rabbitTemplate.convertAndSend(RabbitExchangeType.TOPIC.name(), routingKey, object, correlationData);
+    }
+
+    public void convertSendAndReceive_topic(String routingKey,Object object) {
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        rabbitTemplate.convertAndSend(RabbitExchangeType.TOPIC.name(), routingKey, object, correlationData);
+    }
 }

@@ -11,8 +11,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfigurer {
     public static final String DIRECT_QUEUE = "direct_queue";
-    public static final String FANOUT_QUEUE = "fanout_queue";
-    public static final String TOPIC_QUEUE  = "topic_queue";
+    public static final String FANOUT_QUEUE_1 = "fanout_queue_1";
+    public static final String FANOUT_QUEUE_2 = "fanout_queue_2";
+    public static final String TOPIC_LOG_INFO_QUEUE  = "log.info";
+    public static final String TOPIC_LOG_QUEUE  = "log.#";
 
 
     /*@Bean
@@ -32,6 +34,7 @@ public class RabbitMQConfigurer {
         return new RabbitAdmin(connectionFactory);
     }*/
 
+//---------------direct------------------------------------------------------------------------------------------
     /**
      * 声明Direct交换区
      * 参数1：String name
@@ -44,34 +47,6 @@ public class RabbitMQConfigurer {
     DirectExchange directExchange() {
         return new DirectExchange(RabbitExchangeType.DIRECT.name(),true,false,null);
     }
-
-    /**
-     * 声明Fanout交换区
-     * 参数1：String name
-     * 参数2：boolean durable
-     * 参数3：boolean autoDelete
-     * 参数4：Map arguments
-     * @return
-     */
-    @Bean
-    FanoutExchange fanoutExchange() {
-        return new FanoutExchange(RabbitExchangeType.FANOUT.name(),true,false,null);
-    }
-
-
-    /**
-     * 声明Topic交换区
-     * 参数1：String name
-     * 参数2：boolean durable
-     * 参数3：boolean autoDelete
-     * 参数4：Map arguments
-     * @return
-     */
-    @Bean
-    TopicExchange topicExchange() {
-        return new TopicExchange(RabbitExchangeType.TOPIC.name(),true,false,null);
-    }
-
 
     /**
      * 声明名字为direct_queue的queue
@@ -88,35 +63,6 @@ public class RabbitMQConfigurer {
     }
 
     /**
-     * 声明名字为fanout_queue的queue
-     * 参数1:String name
-     * 参数2:boolean durable
-     * 参数3:boolean exclusive
-     * 参数4:boolean autoDelete
-     * 参数5:Map arguments
-     * @return
-     */
-    @Bean
-    public Queue fanoutQueue() {
-        return new Queue(FANOUT_QUEUE,true,false,false,null);
-    }
-
-    /**
-     * 声明名字为topic_queue的queue
-     * 参数1:String name
-     * 参数2:boolean durable
-     * 参数3:boolean exclusive
-     * 参数4:boolean autoDelete
-     * 参数5:Map arguments
-     * @return
-     */
-    @Bean
-    public Queue topicQueue() {
-        return new Queue(TOPIC_QUEUE,true,false,false,null);
-    }
-
-
-    /**
      * directQueue绑定directExchange
      * @param directQueue
      * @param directExchange
@@ -127,51 +73,111 @@ public class RabbitMQConfigurer {
         return BindingBuilder.bind(directQueue).to(directExchange).with("key.direct");
     }
 
+//-------------fanout------------------------------------------------------------------------------------
+    /**
+     * 声明Fanout交换区
+     * 参数1：String name
+     * 参数2：boolean durable
+     * 参数3：boolean autoDelete
+     * 参数4：Map arguments
+     * @return
+     */
+    @Bean
+    FanoutExchange fanoutExchange() {
+        return new FanoutExchange(RabbitExchangeType.FANOUT.name(),true,false,null);
+    }
+
+    /**
+     * 声明名字为fanout_queue的queue
+     * 参数1:String name
+     * 参数2:boolean durable
+     * 参数3:boolean exclusive
+     * 参数4:boolean autoDelete
+     * 参数5:Map arguments
+     * @return
+     */
+    @Bean
+    public Queue fanoutQueue1() {
+        return new Queue(FANOUT_QUEUE_1,true,false,false,null);
+    }
+
+    @Bean
+    public Queue fanoutQueue2() {
+        return new Queue(FANOUT_QUEUE_2,true,false,false,null);
+    }
+
     /**
      * fanoutQueue绑定fanoutExchange
      * @return
      */
     @Bean
-    public Binding bindingFanout() {
-        return BindingBuilder.bind(fanoutQueue()).to(fanoutExchange());
+    public Binding bindingFanout1() {
+        return BindingBuilder.bind(fanoutQueue1()).to(fanoutExchange());
     }
 
+    @Bean
+    public Binding bindingFanout2() {
+        return BindingBuilder.bind(fanoutQueue2()).to(fanoutExchange());
+    }
+
+
+//---------topic--------------------------------------------------------------------------------------------
     /**
-     * topicQueue绑定topicExchange
+     * 声明Topic交换区
+     * 参数1：String name
+     * 参数2：boolean durable
+     * 参数3：boolean autoDelete
+     * 参数4：Map arguments
      * @return
      */
     @Bean
-    public Binding bindingTopic() {
-        return BindingBuilder.bind(topicQueue()).to(topicExchange()).with("key.topic.#");
-    }
-
-  /*  //声明队列
-    @Bean
-    public Queue queue1() {
-        return new Queue("hello.queue1", true); // true表示持久化该队列
-    }
-
-    @Bean
-    public Queue queue2() {
-        return new Queue("hello.queue2", true);
-    }
-
-    //声明交互器
-    @Bean
     TopicExchange topicExchange() {
-        return new TopicExchange("topicExchange");
+        return new TopicExchange(RabbitExchangeType.TOPIC.name(),true,false,null);
     }
 
-    //绑定
+    /**
+     * 声明名字为topic_queue的queue 只接收log.info
+     * 参数1:String name
+     * 参数2:boolean durable
+     * 参数3:boolean exclusive
+     * 参数4:boolean autoDelete
+     * 参数5:Map arguments
+     * @return
+     */
     @Bean
-    public Binding binding1() {
-        return BindingBuilder.bind(queue1()).to(topicExchange()).with("key.1");
+    public Queue topicQueueInfo() {
+        return new Queue(TOPIC_LOG_INFO_QUEUE,true,false,false,null);
     }
 
+    /**
+     * topicQueue绑定topicExchange 绑定log.info
+     * @return
+     */
     @Bean
-    public Binding binding2() {
-        return BindingBuilder.bind(queue2()).to(topicExchange()).with("key.#");
+    public Binding bindingTopicInfo() {
+        return BindingBuilder.bind(topicQueueInfo()).to(topicExchange()).with("log.info");
     }
-*/
 
+    /**
+     * 声明名字为topic_queue的queue 接收log.info或者log.error
+     * 参数1:String name
+     * 参数2:boolean durable
+     * 参数3:boolean exclusive
+     * 参数4:boolean autoDelete
+     * 参数5:Map arguments
+     * @return
+     */
+    @Bean
+    public Queue topicQueueLogAll() {
+        return new Queue(TOPIC_LOG_QUEUE,true,false,false,null);
+    }
+
+    /**
+     * topicQueue绑定topicExchange 绑定log
+     * @return
+     */
+    @Bean
+    public Binding bindingTopicAll() {
+        return BindingBuilder.bind(topicQueueLogAll()).to(topicExchange()).with("log.#");
+    }
 }
