@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tutorial_nio</artifactId>
+    <artifactId>tutorial_io</artifactId>
     <packaging>jar</packaging>
 
-    <name>tutorial_nio</name>
+    <name>tutorial_io</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -18,6 +18,10 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>tutorial</groupId>
+            <artifactId>tutorial_service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

@@ -3,13 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Tutorial.iml" filepath="$PROJECT_DIR$/.idea/Tutorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial.iml" filepath="$PROJECT_DIR$/tutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" filepath="$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" filepath="$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_io/tutorial_io.iml" filepath="$PROJECT_DIR$/tutorial_io/tutorial_io.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_java/tutorial_java.iml" filepath="$PROJECT_DIR$/tutorial_java/tutorial_java.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_jersey/tutorial_jersey.iml" filepath="$PROJECT_DIR$/tutorial_jersey/tutorial_jersey.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_mongo/tutorial_mongo.iml" filepath="$PROJECT_DIR$/tutorial_mongo/tutorial_mongo.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_netty/tutorial_netty.iml" filepath="$PROJECT_DIR$/tutorial_netty/tutorial_netty.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tutorial_nio/tutorial_nio.iml" filepath="$PROJECT_DIR$/tutorial_nio/tutorial_nio.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_rabbitmq/tutorial_rabbitmq.iml" filepath="$PROJECT_DIR$/tutorial_rabbitmq/tutorial_rabbitmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_redis/tutorial_redis.iml" filepath="$PROJECT_DIR$/tutorial_redis/tutorial_redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_repository/tutorial_repository.iml" filepath="$PROJECT_DIR$/tutorial_repository/tutorial_repository.iml" />
