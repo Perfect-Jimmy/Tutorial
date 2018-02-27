@@ -12,7 +12,7 @@
 
 > 查看分词
 ```
-curl  -H "Content-Type:application/json" -X GET "localhost:9200/_analyze?pretty" -d'
+curl -H "Content-Type:application/json" -X GET "localhost:9200/_analyze?pretty" -d'
 {
   "analyzer": "standard",
   "text":     "心随云动"
