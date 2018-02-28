@@ -318,11 +318,11 @@ curl -H "Content-Type:application/json" -X GET "localhost:9200/es/blog/_search?p
          "top_hits":{
              "from": 0,
              "size": 2,
-             "sort": [               
+             "sort": [
                  {
-                     "weekClick": {           
+                   "weekClick": {           
                        "order": "desc"
-                     }
+                   }
                  }
              ],
              "_source":{
