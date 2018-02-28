@@ -57,6 +57,6 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?p
   }
 ```
 解决most_field三大弊端:
-1. and要求每个term都必须在任何一个field中出现.要求Java必须title或desc中出现,要求Tutorial必须title或desc中出现.
+1. and要求每个term都必须在任何一个field中出现.要求Java必须在title或desc中出现,要求Tutorial必须在title或desc中出现.
 2. 既然每个term都要求出现,长尾肯定被去除掉了.java hadoop spark --> 这3个term都必须在任何一个field出现了,如果document只有一个field中包含一个java,那就被干掉了,作为长尾就没了.
 3. 计算IDF的时候,将每个query在每个field中的IDF都取出来,取最小值,就不会出现极端情况下的极大值了.

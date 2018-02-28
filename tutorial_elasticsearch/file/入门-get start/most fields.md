@@ -60,10 +60,10 @@ curl -H "Content-Type:application/json" -XGET 'localhost:9200/es/blog/_search?pr
 1. best_fields是对多个field进行搜索,挑选某个field匹配度最高的那个分数,同时在多个query最高分相同的情况下,在一定程度上考虑其他query的分数.
 简单来说,你对多个field进行搜索,就想搜索到某一个field尽可能包含更多关键字的数据  
 
-* 优点:通过best_fields策略,以及综合考虑其他field,还有minimum_should_match支持，可以尽可能精准地将匹配的结果推送到最前面
+* 优点:通过best_fields策略,以及综合考虑其他field,还有minimum_should_match支持,可以尽可能精准地将匹配的结果推送到最前面
 * 缺点:除了那些精准匹配的结果,其他差不多大的结果,排序结果不是太均匀,没有什么区分度了 
 
-2. most_fields综合多个field一起进行搜索,尽可能多地让所有field的query参与到总分数的计算中来,
+2. most_fields综合多个field一起进行搜索,尽可能多的让所有field的query参与到总分数的计算中来,
 此时就会是个大杂烩,出现类似best_fields案例最开始的那个结果,结果不一定精准,某一个document的一个field包含更多的关键字,
 但是因为其他document有更多field匹配到了,所以排在了前面.所以需要建立类似title.keyword这样的field,尽可能让某一个field精准匹配query string,
 贡献更高的分数,将更精准匹配的数据排到前面  
