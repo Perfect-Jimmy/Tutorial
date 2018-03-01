@@ -1,8 +1,8 @@
 ### IK实战
 输入拼音"liudehua"查询到刘德华
-1. 创建索引并自定义分词器 curl -X GET 'localhost:9200/ik_pinyin_tutorial/_mapping/star?pretty' 
+1. 创建索引并自定义分词器 curl -X GET 'localhost:9200/ik_tutorial/_mapping/star?pretty' 
 ```
-curl -H 'Content-Type: application/json' -XPUT "localhost:9200/ik_pinyin_tutorial" -d ' 
+curl -H 'Content-Type: application/json' -XPUT "localhost:9200/ik_tutorial" -d ' 
 {
    "settings":{
       "analysis":{
@@ -48,10 +48,12 @@ curl -H 'Content-Type: application/json' -XPUT "localhost:9200/ik_pinyin_tutoria
 }
 '
 ```
-分词测试  
+> 参数说明:term_vector 存储词语的偏移位置,在结果高亮的时候有用
+
+#### 分词测试  
 输入刘德华
 ```
-curl  -H "Content-Type:application/json" -XGET "localhost:9200/ik_pinyin_tutorial/_analyze?pretty" -d'
+curl  -H "Content-Type:application/json" -XGET "localhost:9200/ik_tutorial/_analyze?pretty" -d'
 {
   "analyzer": "ik_pinyin_analyzer",
   "text":     "刘德华"
@@ -95,7 +97,7 @@ curl  -H "Content-Type:application/json" -XGET "localhost:9200/ik_pinyin_tutoria
 ```
 输入liu
 ```
-curl  -H "Content-Type:application/json" -XGET "localhost:9200/ik_pinyin_tutorial/_analyze?pretty" -d'
+curl  -H "Content-Type:application/json" -XGET "localhost:9200/ik_tutorial/_analyze?pretty" -d'
 {
   "analyzer": "ik_pinyin_analyzer",
   "text":     "liu"
@@ -118,25 +120,25 @@ curl  -H "Content-Type:application/json" -XGET "localhost:9200/ik_pinyin_tutoria
 ```
 2. 测试数据
 ```
-curl -H "Content-Type:application/json" -X PUT 'localhost:9200/ik_pinyin_tutorial/star/1?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/ik_tutorial/star/1?pretty' -d ' 
 {
   "id": 1,
   "name": "刘德华"
 }'
 
-curl -H "Content-Type:application/json" -X PUT 'localhost:9200/ik_pinyin_tutorial/star/2?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/ik_tutorial/star/2?pretty' -d ' 
 {
   "id": 2,
   "name": "刘青云"
 }'
 
-curl -H "Content-Type:application/json" -X PUT 'localhost:9200/ik_pinyin_tutorial/star/3?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/ik_tutorial/star/3?pretty' -d ' 
 {
   "id": 3,
   "name": "黎明"
 }'
 
-curl -H "Content-Type:application/json" -X PUT 'localhost:9200/ik_pinyin_tutorial/star/4?pretty' -d ' 
+curl -H "Content-Type:application/json" -X PUT 'localhost:9200/ik_tutorial/star/4?pretty' -d ' 
 {
   "id": 4,
   "name": "刘锡明"
@@ -147,7 +149,7 @@ curl -H "Content-Type:application/json" -X PUT 'localhost:9200/ik_pinyin_tutoria
 3. 检索
 输入liu
 ```
-curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutorial/star/_search?pretty' -d '
+curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_tutorial/star/_search?pretty' -d '
 {
   "query":{ 
      "match":{ "name.pinyin": "liu" } 
@@ -176,7 +178,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutoria
     "max_score" : 3.2045598,
     "hits" : [
       {
-        "_index" : "ik_pinyin_tutorial",
+        "_index" : "ik_tutorial",
         "_type" : "star",
         "_id" : "1",
         "_score" : 3.2045598,
@@ -191,7 +193,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutoria
         }
       },
       {
-        "_index" : "ik_pinyin_tutorial",
+        "_index" : "ik_tutorial",
         "_type" : "star",
         "_id" : "2",
         "_score" : 2.0309238,
@@ -206,7 +208,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutoria
         }
       },
       {
-        "_index" : "ik_pinyin_tutorial",
+        "_index" : "ik_tutorial",
         "_type" : "star",
         "_id" : "4",
         "_score" : 2.0309238,
@@ -226,7 +228,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutoria
 ```
 输入刘
 ```
-curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutorial/star/_search?pretty' -d '
+curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_tutorial/star/_search?pretty' -d '
 {
   "query": { 
         "match": { "name.pinyin": "刘" } 
@@ -255,7 +257,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutoria
     "max_score" : 0.320456,
     "hits" : [
       {
-        "_index" : "ik_pinyin_tutorial",
+        "_index" : "ik_tutorial",
         "_type" : "star",
         "_id" : "1",
         "_score" : 0.320456,
@@ -270,7 +272,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutoria
         }
       },
       {
-        "_index" : "ik_pinyin_tutorial",
+        "_index" : "ik_tutorial",
         "_type" : "star",
         "_id" : "2",
         "_score" : 0.20309238,
@@ -285,7 +287,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutoria
         }
       },
       {
-        "_index" : "ik_pinyin_tutorial",
+        "_index" : "ik_tutorial",
         "_type" : "star",
         "_id" : "4",
         "_score" : 0.20309238,
@@ -305,7 +307,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutoria
 ```
 输入ldh
 ```
-curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutorial/star/_search?pretty' -d '
+curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_tutorial/star/_search?pretty' -d '
 {
   "query": { 
         "match": { "name.pinyin": "ldh" } 
@@ -334,7 +336,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/ik_pinyin_tutoria
     "max_score" : 0.320456,
     "hits" : [
       {
-        "_index" : "ik_pinyin_tutorial",
+        "_index" : "ik_tutorial",
         "_type" : "star",
         "_id" : "1",
         "_score" : 0.320456,
