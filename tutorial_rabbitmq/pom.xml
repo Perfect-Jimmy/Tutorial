@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>tutorial_rabbitmq</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>tutorial_rabbitmq Maven Webapp</name>
     <url>http://maven.apache.org</url>
 

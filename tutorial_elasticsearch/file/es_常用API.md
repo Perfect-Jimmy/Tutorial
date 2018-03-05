@@ -4,7 +4,7 @@
 
 > 创建索引 curl -X PUT 'localhost:9200/es?pretty'
 
-> 删除索引 curl -X DELETE 'localhost:9200/es?pretty'
+> 删除索引 curl -X DELETE 'localhost:9200/ik_pinyin_tutorial?pretty'
 
 > 查看映射 curl -X GET 'localhost:9200/es/_mapping/blog?pretty'
 
