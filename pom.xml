@@ -22,6 +22,7 @@
         <module>tutorial_netty</module>
         <module>tutorial_websocket</module>
         <module>tutorial_io</module>
+        <module>tutorial_kafka</module>
     </modules>
     <packaging>pom</packaging>
 
