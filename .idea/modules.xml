@@ -3,23 +3,41 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Tutorial.iml" filepath="$PROJECT_DIR$/.idea/Tutorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Tutorial.iml" filepath="$PROJECT_DIR$/.idea/Tutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial.iml" filepath="$PROJECT_DIR$/tutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" filepath="$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" filepath="$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" filepath="$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" filepath="$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_io/tutorial_io.iml" filepath="$PROJECT_DIR$/tutorial_io/tutorial_io.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_io/tutorial_io.iml" filepath="$PROJECT_DIR$/tutorial_io/tutorial_io.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_java/tutorial_java.iml" filepath="$PROJECT_DIR$/tutorial_java/tutorial_java.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_java/tutorial_java.iml" filepath="$PROJECT_DIR$/tutorial_java/tutorial_java.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_jersey/tutorial_jersey.iml" filepath="$PROJECT_DIR$/tutorial_jersey/tutorial_jersey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_jersey/tutorial_jersey.iml" filepath="$PROJECT_DIR$/tutorial_jersey/tutorial_jersey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_kafka/tutorial_kafka.iml" filepath="$PROJECT_DIR$/tutorial_kafka/tutorial_kafka.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_kafka/tutorial_kafka.iml" filepath="$PROJECT_DIR$/tutorial_kafka/tutorial_kafka.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_mongo/tutorial_mongo.iml" filepath="$PROJECT_DIR$/tutorial_mongo/tutorial_mongo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_mongo/tutorial_mongo.iml" filepath="$PROJECT_DIR$/tutorial_mongo/tutorial_mongo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_netty/tutorial_netty.iml" filepath="$PROJECT_DIR$/tutorial_netty/tutorial_netty.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_netty/tutorial_netty.iml" filepath="$PROJECT_DIR$/tutorial_netty/tutorial_netty.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_rabbitmq/tutorial_rabbitmq.iml" filepath="$PROJECT_DIR$/tutorial_rabbitmq/tutorial_rabbitmq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_rabbitmq/tutorial_rabbitmq.iml" filepath="$PROJECT_DIR$/tutorial_rabbitmq/tutorial_rabbitmq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_redis/tutorial_redis.iml" filepath="$PROJECT_DIR$/tutorial_redis/tutorial_redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_redis/tutorial_redis.iml" filepath="$PROJECT_DIR$/tutorial_redis/tutorial_redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_repository/tutorial_repository.iml" filepath="$PROJECT_DIR$/tutorial_repository/tutorial_repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_repository/tutorial_repository.iml" filepath="$PROJECT_DIR$/tutorial_repository/tutorial_repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_service/tutorial_service.iml" filepath="$PROJECT_DIR$/tutorial_service/tutorial_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_service/tutorial_service.iml" filepath="$PROJECT_DIR$/tutorial_service/tutorial_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_spring/tutorial_spring.iml" filepath="$PROJECT_DIR$/tutorial_spring/tutorial_spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_spring/tutorial_spring.iml" filepath="$PROJECT_DIR$/tutorial_spring/tutorial_spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_springboot/tutorial_springboot.iml" filepath="$PROJECT_DIR$/tutorial_springboot/tutorial_springboot.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_springboot/tutorial_springboot.iml" filepath="$PROJECT_DIR$/tutorial_springboot/tutorial_springboot.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_springcloud/tutorial_springcloud.iml" filepath="$PROJECT_DIR$/tutorial_springcloud/tutorial_springcloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_springcloud/tutorial_springcloud.iml" filepath="$PROJECT_DIR$/tutorial_springcloud/tutorial_springcloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_util/tutorial_util.iml" filepath="$PROJECT_DIR$/tutorial_util/tutorial_util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_util/tutorial_util.iml" filepath="$PROJECT_DIR$/tutorial_util/tutorial_util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_websocket/tutorial_websocket.iml" filepath="$PROJECT_DIR$/tutorial_websocket/tutorial_websocket.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_websocket/tutorial_websocket.iml" filepath="$PROJECT_DIR$/tutorial_websocket/tutorial_websocket.iml" />
     </modules>
   </component>
