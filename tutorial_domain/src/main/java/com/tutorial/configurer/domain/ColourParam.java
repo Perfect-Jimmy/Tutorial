@@ -2,6 +2,7 @@ package com.tutorial.configurer.domain;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties
+@ConfigurationProperties(prefix = "spring.colour")
+@PropertySource("classpath:/data-binder.properties")
 public class ColourParam {
+    //此处的字段名必须和配置文件中一致,否则获取不到
     private String name;
 }

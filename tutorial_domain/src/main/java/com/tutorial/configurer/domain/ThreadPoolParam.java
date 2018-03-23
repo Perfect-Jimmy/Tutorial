@@ -2,6 +2,7 @@ package com.tutorial.configurer.domain;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix="spring.task.pool")
+@PropertySource("classpath:/data-binder.properties")
 public class ThreadPoolParam {
     private int corePoolSize;
     private int maxPoolSize;
