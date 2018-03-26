@@ -1,7 +1,6 @@
 package com.tutorial.data.bind;
 
 import com.tutorial.AppStart;
-import com.tutorial.configurer.domain.ColourParam;
 import com.tutorial.configurer.domain.ThreadPoolParam;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,7 +39,7 @@ public class DataBindTest {
     public void listDataBindTest(){
         ApplicationContext context = SpringApplication.run(AppStart.class);
         Binder binder = Binder.get(context.getEnvironment());
-        List<ColourParam> colourParam = binder.bind("spring.colour.name", Bindable.listOf(ColourParam.class)).get();
+        List<String> colourParam = binder.bind("spring.colour.name", Bindable.listOf(String.class)).get();
         System.out.println(colourParam);
     }
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 读取属性配置
  */
 @RestController
-public class ReadPropertiesController {
+public class DataBinderController {
     @Autowired
     private Environment environment;
 
