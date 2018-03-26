@@ -20,6 +20,18 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    @ExceptionHandler(value = Exception.class)
+    public Object defaultErrorHandler(HttpServletRequest request, Exception e) throws Exception {
+        ExceptionMsg resultMsg = new ExceptionMsg();
+        resultMsg.setErrorMsg(e.getMessage());
+        if (e instanceof org.springframework.web.servlet.NoHandlerFoundException) {
+            resultMsg.setErrorCode("404");
+        } else {
+            resultMsg.setErrorCode("500");
+        }
+        return resultMsg;
+    }
+
     //添加全局异常处理流程,根据需要设置需要处理的异常,本文以MethodArgumentNotValidException为例
     @ExceptionHandler(value=MethodArgumentNotValidException.class)
     public Object MethodArgumentNotValidHandler(HttpServletRequest request,
