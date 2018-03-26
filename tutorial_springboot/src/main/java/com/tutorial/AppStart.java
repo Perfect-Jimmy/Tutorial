@@ -1,12 +1,9 @@
 package com.tutorial;
 
-import com.tutorial.configurer.domain.ColourParam;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
-import org.springframework.boot.context.properties.bind.Bindable;
-import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -17,10 +14,9 @@ import org.springframework.context.ApplicationContext;
 public class AppStart {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(AppStart.class,args);
-        Binder binder = Binder.get(context.getEnvironment());
 
-        // 绑定简单配置
-        ColourParam colour = binder.bind("spring.colour", Bindable.of(ColourParam.class)).get();
-        System.out.println(colour.getNamex());
+       /* Binder binder = Binder.get(context.getEnvironment());
+        List<CityParam> citys = binder.bind("spring.city", Bindable.listOf(CityParam.class)).get();
+        System.out.println(citys);*/
     }
 }
