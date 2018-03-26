@@ -4,6 +4,7 @@ import com.tutorial.exception.util.ExceptionMsg;
 import com.tutorial.exception.util.MyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,7 +26,7 @@ public class GlobalExceptionHandler {
         ExceptionMsg resultMsg = new ExceptionMsg();
         resultMsg.setErrorMsg(e.getMessage());
         if (e instanceof org.springframework.web.servlet.NoHandlerFoundException) {
-            resultMsg.setErrorCode("404");
+            resultMsg.setErrorCode(HttpStatus.NOT_FOUND.toString());
         } else {
             resultMsg.setErrorCode("500");
         }
