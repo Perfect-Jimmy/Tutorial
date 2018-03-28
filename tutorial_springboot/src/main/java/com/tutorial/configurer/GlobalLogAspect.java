@@ -1,5 +1,6 @@
 package com.tutorial.configurer;
 
+import org.apache.logging.log4j.ThreadContext;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -52,6 +53,7 @@ public class GlobalLogAspect {
     @Before("logPointCut()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
         startTime.set(System.currentTimeMillis());
+        ThreadContext.put("logId", String.valueOf(System.currentTimeMillis()));
         // 接收到请求,记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();

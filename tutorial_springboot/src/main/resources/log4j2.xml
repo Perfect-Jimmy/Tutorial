@@ -6,7 +6,7 @@
     <!--常量引用 -->
     <properties>
         <!-- 文件输出格式 -->
-        <property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} |-%-5level [%thread] %c [%L] -| %msg%n</property>
+        <property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} |-%-5level [%thread] %c [%L] [ LOGID:%X{logId} ]-| %msg%n</property>
     </properties>
 
     <!--定义日志输出位置（控制台、文件或其他）、内容结构（起始就是PatternLayout）、日志等级-->

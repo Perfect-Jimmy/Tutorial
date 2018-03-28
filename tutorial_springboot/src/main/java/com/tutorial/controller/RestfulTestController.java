@@ -2,6 +2,7 @@ package com.tutorial.controller;
 
 import com.tutorial.domain.User;
 import com.tutorial.util.Constants;
+import org.apache.logging.log4j.ThreadContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
