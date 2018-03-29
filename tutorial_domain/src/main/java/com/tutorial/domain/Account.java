@@ -3,10 +3,7 @@ package com.tutorial.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -21,7 +18,7 @@ public class Account implements Serializable {
     private static final long serialVersionUID = -5055385164319127586L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Size(min=6,max=10,message = "名字长度6-10位")
