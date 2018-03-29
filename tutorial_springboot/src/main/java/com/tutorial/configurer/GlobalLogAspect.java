@@ -70,7 +70,7 @@ public class GlobalLogAspect {
     }
 
     /**
-     * /returning的值和doAfterReturning的参数名一致
+     * returning的值和doAfterReturning的参数名一致
      * @param object
      * @throws Throwable
      */
