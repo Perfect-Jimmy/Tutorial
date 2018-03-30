@@ -66,11 +66,11 @@ public class DataSourceConfigurer {
     }
 
 
-    @Bean(name = "secondaryDataSource")
+  /*  @Bean(name = "secondaryDataSource")
     @Qualifier("secondaryDataSource")
     public DataSource secondaryDataSource() {
         return getDruidDataSource("root", "ysten123","jdbc:mysql://192.168.50.243:3306/test_s??characterEncoding=utf8&zeroDateTimeBehavior=convertToNull");
-    }
+    }*/
 
     /**
      * 公共类
