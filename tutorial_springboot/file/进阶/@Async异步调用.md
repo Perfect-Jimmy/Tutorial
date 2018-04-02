@@ -1,16 +1,7 @@
-package com.tutorial.configurer;
-
-import com.tutorial.configurer.domain.ThreadPoolParam;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Component;
-
-import java.util.concurrent.ThreadPoolExecutor;
-
-/**
- * Created by Jimmy. 2018/1/30  17:09
- */
+### @Async 异步调用
+1. 注解@EnableAsync:开启异步调用
+2. 线程池定义:注意 @Bean("taskExecutor") 定义线程池名字
+```
 @Component
 public class ThreadPoolConfigurer {
     @Autowired
@@ -38,7 +29,46 @@ public class ThreadPoolConfigurer {
         // CALLER_RUNS:主线程直接执行该任务,执行完之后尝试添加下一个任务到线程池中,可以有效降低向线程池内添加任务的速度
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         executor.initialize();
-        System.out.println(executor);
         return executor;
     }
 }
+```
+#### 异步线程池调用
+1. 如何让异步调用的执行任务使用这个线程池中的资源来运行???:只需要在@Async注解中指定线程池名即可
+```
+@Component
+public class ThreadTaskService {
+    private Logger LOGGER = LoggerFactory.getLogger(ThreadTaskService.class);
+    public static Random random = new Random();
+
+    @Async("taskExecutor")
+    public void doTaskOne() throws Exception {
+        LOGGER.info("开始做任务一");
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        Thread.sleep(random.nextInt(10000));
+        stopWatch.stop();
+        LOGGER.info("完成任务一,耗时:" + stopWatch.getTotalTimeMillis() + "毫秒");
+    }
+
+    @Async("taskExecutor")
+    public void doTaskTwo() throws Exception {
+        LOGGER.info("开始做任务二");
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        Thread.sleep(random.nextInt(10000));
+        stopWatch.stop();
+        LOGGER.info("完成任务二,耗时:" + stopWatch.getTotalTimeMillis() + "毫秒");
+    }
+
+    @Async("taskExecutor")
+    public void doTaskThree() throws Exception {
+        LOGGER.info("开始做任务三");
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        Thread.sleep(random.nextInt(10000));
+        stopWatch.stop();
+        LOGGER.info("完成任务三,耗时:" + stopWatch.getTotalTimeMillis() + "毫秒");
+    }
+}
+```

@@ -1,5 +1,6 @@
 package com.tutorial.thread;
 
+import com.tutorial.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,8 @@ public class ThreadPoolBigDataController {
     private static final Logger logger = LoggerFactory.getLogger(ThreadPoolBigDataController.class);
     @Autowired
     private ThreadPoolTaskExecutor taskExecutor;
-
+    @Autowired
+    private ThreadTaskService threadTaskService;
 
     @RequestMapping("/bigData")
     public String  bigData(){
@@ -38,5 +40,14 @@ public class ThreadPoolBigDataController {
         }
         logger.info("end "+(System.currentTimeMillis()-start));
         return "success";
+    }
+
+
+    @RequestMapping("/asyncTask")
+    public String  asyncTask() throws Exception {
+        threadTaskService.doTaskOne();;
+        threadTaskService.doTaskTwo();
+        threadTaskService.doTaskThree();
+        return Constants.SUCCESS;
     }
 }

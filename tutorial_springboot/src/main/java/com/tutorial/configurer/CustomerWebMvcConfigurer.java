@@ -27,8 +27,8 @@ public class CustomerWebMvcConfigurer implements WebMvcConfigurer {
     // 方式1
     @Override
     public void addInterceptors(InterceptorRegistry registry){
-        System.out.println("===========拦截器==============");
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
+       // System.out.println("===========拦截器==============");
+       // registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
     }
 
     /**
