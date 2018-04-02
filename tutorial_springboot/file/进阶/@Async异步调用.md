@@ -26,7 +26,7 @@ public class ThreadPoolConfigurer {
         //用来设置线程池中任务的等待时间,如果超过这个时候还没有销毁就强制销毁,以确保应用最后能够被关闭,而不是阻塞住
         executor.setAwaitTerminationSeconds(60);
         // rejection-policy：当pool已经达到max size的时候,如何处理新任务
-        // CALLER_RUNS:主线程直接执行该任务,执行完之后尝试添加下一个任务到线程池中,可以有效降低向线程池内添加任务的速度
+        // CALLER_RUNS:主线程直接执行该任务,执行完之后尝试添加下一个任务到线程池中,可以有效降低向线程池内添加任务的速度.就是同步执行
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         executor.initialize();
         return executor;
