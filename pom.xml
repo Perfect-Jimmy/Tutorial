@@ -23,6 +23,7 @@
         <module>tutorial_websocket</module>
         <module>tutorial_io</module>
         <module>tutorial_kafka</module>
+        <module>tutorial_nginx</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -123,7 +124,7 @@
             <artifactId>poi</artifactId>
             <version>3.17</version>
         </dependency>
-        <!--Guava -->
+        <!--guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -142,12 +143,12 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.47</version>
         </dependency>
-        <!--MongoDB-->
+        <!--mongoDB-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
-        <!--Redis-->
+        <!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -167,6 +168,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!--java-jwt -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.3.0</version>
         </dependency>
     </dependencies>
 
