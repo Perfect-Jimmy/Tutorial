@@ -2,6 +2,7 @@ package com.tutorial.test;
 
 import com.tutorial.AppStart;
 import com.tutorial.domain.User;
+import com.tutorial.service.AccountService;
 import com.tutorial.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,9 @@ import java.util.Date;
 public class JPATest {
     @Autowired
     private UserService userService;
+    @Autowired
+    private AccountService accountService;
+
 
     @Test
     public void saveUser(){
@@ -32,4 +36,7 @@ public class JPATest {
       //  user.setUserDesc("");
         userService.saveOrUpdate(user);
     }
+
+
+
 }

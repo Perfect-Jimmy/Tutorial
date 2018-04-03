@@ -1,5 +1,6 @@
 package com.tutorial.domain;
 
+import com.tutorial.validator.util.CustomValidator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,6 +26,7 @@ public class Account implements Serializable {
     private String userName;
 
     //@Size(min=6,max=10)
+    @CustomValidator(values = "1,2,3")
     private String password;
 
     private String email;
