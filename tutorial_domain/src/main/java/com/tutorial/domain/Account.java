@@ -21,7 +21,7 @@ public class Account implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min=6,max=10,message = "名字长度6-10位")
+    @Size(min=5,max=10,message = "名字长度5-10位")
     private String userName;
 
     //@Size(min=6,max=10)
@@ -29,4 +29,17 @@ public class Account implements Serializable {
     private String password;
 
     private String email;
+
+    private String token;
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", token='" + token + '\'' +
+                '}';
+    }
 }

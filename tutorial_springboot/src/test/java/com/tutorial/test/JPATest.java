@@ -1,6 +1,7 @@
 package com.tutorial.test;
 
 import com.tutorial.AppStart;
+import com.tutorial.domain.Account;
 import com.tutorial.domain.User;
 import com.tutorial.service.AccountService;
 import com.tutorial.service.UserService;
@@ -37,6 +38,18 @@ public class JPATest {
         userService.saveOrUpdate(user);
     }
 
+    @Test
+    public void saveAccount(){
+        Account account = new Account();
+        account.setUserName("jimmy");
+        account.setPassword("123456");
+        accountService.saveAccount(account);
+    }
 
+    @Test
+    public void queryAccount(){
+        Account account = accountService.queryById(1L);
+        System.out.println(account);
+    }
 
 }

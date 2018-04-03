@@ -3,6 +3,7 @@ package com.tutorial.configurer;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.tutorial.interceptor.JwtTokenInterceptor;
 import com.tutorial.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,8 @@ import java.util.List;
 public class CustomerWebMvcConfigurer implements WebMvcConfigurer {
     @Autowired
     private LoginInterceptor loginInterceptor;
-
+    @Autowired
+    private JwtTokenInterceptor jwtTokenInterceptor;
     /**
      * 注册拦截器
      */
@@ -31,6 +33,8 @@ public class CustomerWebMvcConfigurer implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
        // System.out.println("===========拦截器==============");
        // registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
+        //jwt token 拦截器
+        registry.addInterceptor(jwtTokenInterceptor).addPathPatterns("/api/**");
     }
 
     /**

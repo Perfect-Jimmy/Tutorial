@@ -5,4 +5,7 @@ package com.tutorial.util;
  */
 public class Constants {
     public static final String SUCCESS = "SUCCESS";
+    public static final String FAILURE = "FAILURE";
+    //jwt 加密key
+    public static final String SIGNING_KEY="tutorial_jwt";
 }
