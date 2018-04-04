@@ -13,4 +13,10 @@ public class ErrorController {
     public String errorTest() throws Exception {
         throw new Exception("发生错误");
     }
+
+
+    @RequestMapping("403")
+    public String error_403() throws Exception {
+        return "/error/403";
+    }
 }

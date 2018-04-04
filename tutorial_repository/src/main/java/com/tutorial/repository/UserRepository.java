@@ -39,6 +39,7 @@ public interface UserRepository extends JpaRepository<User, Long>,JpaSpecificati
      */
     List<User> findByUserName(String userName);
 
+
     /**
      * AND 查询
      * @param userName

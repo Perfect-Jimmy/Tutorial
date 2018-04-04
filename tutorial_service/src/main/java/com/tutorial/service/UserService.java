@@ -2,13 +2,14 @@ package com.tutorial.service;
 
 import com.tutorial.domain.User;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
 /**
  * Created by Jimmy. 2018/1/30  16:49
  */
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     public List<User> findByUserName(String userName);
 

@@ -10,13 +10,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Jimmy. 2018/3/30  16:
+ * Created by Jimmy. 2018/3/30  16:00
  * WebMvcConfigurer 配置 拦截器 过滤器
  */
 @Configuration
@@ -25,6 +26,7 @@ public class CustomerWebMvcConfigurer implements WebMvcConfigurer {
     private LoginInterceptor loginInterceptor;
     @Autowired
     private JwtTokenInterceptor jwtTokenInterceptor;
+
     /**
      * 注册拦截器
      */
@@ -34,7 +36,7 @@ public class CustomerWebMvcConfigurer implements WebMvcConfigurer {
        // System.out.println("===========拦截器==============");
        // registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
         //jwt token 拦截器
-        registry.addInterceptor(jwtTokenInterceptor).addPathPatterns("/api/**");
+        //registry.addInterceptor(jwtTokenInterceptor).addPathPatterns("/api/**");
     }
 
     /**
@@ -60,5 +62,15 @@ public class CustomerWebMvcConfigurer implements WebMvcConfigurer {
         fastJsonHttpMessageConverter.setSupportedMediaTypes(fastMediaTypes);
         fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
         converters.add(fastJsonHttpMessageConverter);
+    }
+
+    /**
+     * view controller
+     * @param registry
+     */
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry){
+        System.out.println("===========view controller==============");
+        registry.addViewController("/login").setViewName("login");
     }
 }

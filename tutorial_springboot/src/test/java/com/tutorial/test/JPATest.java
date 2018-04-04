@@ -2,8 +2,12 @@ package com.tutorial.test;
 
 import com.tutorial.AppStart;
 import com.tutorial.domain.Account;
+import com.tutorial.domain.Role;
 import com.tutorial.domain.User;
+import com.tutorial.domain.UserRole;
 import com.tutorial.service.AccountService;
+import com.tutorial.service.RoleService;
+import com.tutorial.service.UserRoleService;
 import com.tutorial.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +27,10 @@ public class JPATest {
     private UserService userService;
     @Autowired
     private AccountService accountService;
-
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private UserRoleService userRoleService;
 
     @Test
     public void saveUser(){
@@ -52,4 +59,21 @@ public class JPATest {
         System.out.println(account);
     }
 
+
+
+    @Test
+    public void saveRole(){
+        Role role = new Role();
+        // role.setRoleName("admin");
+        role.setRoleName("guest");
+        roleService.saveOrUpdate(role);
+    }
+
+    @Test
+    public void saveUserRole(){
+        UserRole userRole = new UserRole();
+        userRole.setUserId(1L);
+        userRole.setRoleId(1L);
+        userRoleService.saveOrUpdate(userRole);
+    }
 }

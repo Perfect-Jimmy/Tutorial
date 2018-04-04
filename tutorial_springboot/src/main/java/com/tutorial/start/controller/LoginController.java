@@ -1,17 +1,14 @@
 package com.tutorial.start.controller;
 
-import com.tutorial.domain.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Jimmy. 2018/3/30  14:14
  */
 @Controller
+//@PreAuthorize("hasRole('ADMIN')") //有ROLE_USER权限的用户可以访问
 public class LoginController {
 
     @RequestMapping("/index")
@@ -20,7 +17,7 @@ public class LoginController {
     }
 
 
-    @RequestMapping("/login")
+   /* @RequestMapping("/login")
     public String login(@RequestParam(value = "userName")String userName,
                         @RequestParam(value = "password")String password, Model model, HttpServletRequest request){
         model.addAttribute("name", "world");
@@ -32,5 +29,27 @@ public class LoginController {
         }else{
             return "error";
         }
+    }*/
+
+
+    @RequestMapping("/welcome")
+    public String welcome(){
+        return "welcome";
+    }
+
+
+    @RequestMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
+
+    @RequestMapping("/user")
+    public String user(){
+        return "user";
+    }
+
+    @GetMapping(value = {"/home","/"})
+    public String home() {
+        return "/home";
     }
 }
