@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
@@ -40,7 +41,7 @@ public class JPATest {
         user.setAddress("wuxi");
         user.setBirthDay(new Date());
         user.setInCome(100L);
-        user.setPassword("123456");
+        user.setPassword(new BCryptPasswordEncoder().encode("123456").trim());
       //  user.setUserDesc("");
         userService.saveOrUpdate(user);
     }

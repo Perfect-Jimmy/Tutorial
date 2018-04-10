@@ -2,16 +2,10 @@ package com.tutorial.domain;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Jimmy. 2018/1/30  16:46
@@ -19,7 +13,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "user")
-public class User implements Serializable,UserDetails {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 7147781130354030521L;
 
@@ -31,7 +25,7 @@ public class User implements Serializable,UserDetails {
     @Column(nullable = false)
     private String userName;
 
-    @Column(name="password",nullable = false,length = 18)
+    @Column(name="password",nullable = false,length = 500)
     private String password;
 
     /*编程语言中字符串一般都用String表示，但是数据库中varcahr数值类型有长度限制，一旦需要大文本，则需要text数值类型*/
@@ -52,59 +46,5 @@ public class User implements Serializable,UserDetails {
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date birthDay;
-
-    @ManyToMany
-    @JoinTable(name="user_role",joinColumns = {@JoinColumn(name="userId")},inverseJoinColumns = {@JoinColumn(name="roleId")})
-    private List<Role> roles;
-
-    //security
-    //返回分配给用户的角色列表
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-       /* List<GrantedAuthority> auths = new ArrayList<>();
-        List<Role> roles = getRoles();
-        for(Role role:roles){
-            auths.add(new SimpleGrantedAuthority(role.getRoleName()));
-        }
-        return auths;*/
-
-        List<SimpleGrantedAuthority> simpleAuthorities = new ArrayList<>();
-        for(GrantedAuthority authority : this.roles){
-            simpleAuthorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
-        }
-        return simpleAuthorities;
-    }
-
-    //返回帐号
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    //账户是否未过期
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    //账户是否未锁定
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    //密码是否未过期
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    //账户是否激活
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-
 
 }

@@ -1,4 +1,4 @@
-package com.tutorial.deniedhandler;
+package com.tutorial.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * Created by Jimmy. 2018/4/4  18:14
  * 自定义编码器
  */
+//@Component
 public class CustomPasswordEncoder implements PasswordEncoder {
 
     @Override

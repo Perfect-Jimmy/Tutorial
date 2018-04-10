@@ -9,10 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -207,15 +204,5 @@ public class UserServiceImpl implements UserService{
                 return null;
     }
 
-
-    //security
-    @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        List<User> users = this.findByUserName("Jimmy");
-        if(CollectionUtils.isEmpty(users)){
-            throw new UsernameNotFoundException("用户:"+userName+"不存在");
-        }
-        return users.get(0);
-    }
 }
 

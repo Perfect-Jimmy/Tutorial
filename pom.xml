@@ -24,6 +24,7 @@
         <module>tutorial_io</module>
         <module>tutorial_kafka</module>
         <module>tutorial_nginx</module>
+        <module>tutorial_springsecurity</module>
     </modules>
     <packaging>pom</packaging>
 

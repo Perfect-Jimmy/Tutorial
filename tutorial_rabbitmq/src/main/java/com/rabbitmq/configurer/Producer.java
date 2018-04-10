@@ -63,7 +63,7 @@ public class Producer implements RabbitTemplate.ConfirmCallback, RabbitTemplate.
      */
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-        LOGGER.info("消息发送失败:{}",message.getMessageProperties().getCorrelationIdString());
+        LOGGER.info("消息发送失败:{}",message.getMessageProperties().getCorrelationId());
     }
 
 

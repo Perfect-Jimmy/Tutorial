@@ -1,28 +1,33 @@
+/*
 package com.tutorial.configurer;
 
-import com.tutorial.deniedhandler.CustomPasswordEncoder;
+import com.tutorial.security.CustomPasswordEncoder;
+import com.tutorial.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
+*/
 /**
  * Created by Jimmy. 2018/4/4  14:17
- */
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true) // 开启security注解
-public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+ *//*
+
+//@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true) // 开启security注解
+public class WebSecurityConfigurer1 extends WebSecurityConfigurerAdapter {
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebSecurityConfigurer1.class);
+
 
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
-   /* @Autowired
-    private UserService userService;*/
+    @Autowired
+    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -48,10 +53,13 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.inMemoryAuthentication()
+      */
+/*  auth.inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER")
                 .and()
-                .withUser("admin").password("password").roles("ADMIN");
+                .withUser("admin").password("password").roles("ADMIN");*//*
+
+        auth.userDetailsService(userDetailsService());
     }
 
 
@@ -83,7 +91,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 
 
-    /*  // Spring会自动寻找实现接口的类注入,会找到我们的 UserDetailsServiceImpl  类
+    */
+/*  // Spring会自动寻找实现接口的类注入,会找到我们的 UserDetailsServiceImpl  类
     @Bean
     UserDetailsService userDetails(){
         return new UserServiceImpl();
@@ -104,9 +113,11 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 // 使用BCrypt进行密码的hash
                 .passwordEncoder(passwordEncoder());
     }
-*/
+*//*
+
     //允许跨域
-   /* @Bean
+   */
+/* @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
             @Override
@@ -116,10 +127,12 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                         .allowCredentials(false).maxAge(3600);
             }
         };
-    }*/
+    }*//*
 
 
-    /*@Override
+
+    */
+/*@Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
     }
@@ -130,7 +143,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .withUser("root")
                 .password("root")
                 .roles("USER");
-    }*/
+    }*//*
 
 
 
@@ -139,7 +152,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 
 
-    /* @Override
+
+    */
+/* @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/", "/home").permitAll()
@@ -156,23 +171,30 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
-    }*/
+    }*//*
 
 
 
 
 
 
-    /*//自定义认证实体注入
+
+    */
+/*//*
+/自定义认证实体注入
     @Bean
     UserServiceImpl userServiceImpl(){
         return new UserServiceImpl();
     }
 
-    *//**
+    *//*
+*/
+/**
      * 自定义验证用户名密码
      * @return
      *//*
+*/
+/*
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -181,19 +203,25 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         return authenticationProvider;
     }
 
-    *//**
+    *//*
+*/
+/**
      * security
      * 自定义配置
      * @param httpSecurity
      * @throws Exception
      *//*
+*/
+/*
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable().authorizeRequests()
                 .anyRequest().authenticated()//所有请求必须登录后才能访问
                 .and().formLogin().loginPage("/login").failureUrl("/error").permitAll()//登录页面,错误页面可直接访问
                 .and().logout().permitAll();//注销请求可直接访问
-      *//*  httpSecurity.authorizeRequests().antMatchers("/","/css/**", "/js/**", "/fonts/**","/users").permitAll() // 都可以访问
+      *//*
+*/
+/*  httpSecurity.authorizeRequests().antMatchers("/","/css/**", "/js/**", "/fonts/**","/users").permitAll() // 都可以访问
               //  .antMatchers("/h2-console/**").permitAll() // 都可以访问
               //  .antMatchers("/**").hasRole("ADMIN") // 需要相应的角色才能访问
               //  .antMatchers("/console/**").hasAnyRole("ADMIN","USER") // 需要相应的角色才能访问
@@ -205,18 +233,26 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().accessDeniedPage("/403");  // 处理异常,拒绝访问就重定向到 403 页面
         httpSecurity.csrf().ignoringAntMatchers("/h2-console/**"); // 禁用 H2 控制台的 CSRF 防护
         httpSecurity.headers().frameOptions().sameOrigin(); // 允许来自同一来源的H2 控制台的请求*//*
+*/
+/*
     }
 
-    *//**
+    *//*
+*/
+/**
      * 认证信息管理
      *
      * @param auth
      * @throws Exception
      *//*
+*/
+/*
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         //auth.userDetailsService(userDetailsService);
         auth.userDetailsService(userServiceImpl());
         auth.authenticationProvider(authenticationProvider());
-    }*/
+    }*//*
+
 }
+*/
