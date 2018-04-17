@@ -23,8 +23,8 @@
         </File>
 
         <!--info日志-->
-        <RollingFile name="springSecurityFile" fileName="F:/tutorial/logs/springSecurity.log"
-                     filePattern="F:/tutorial/logs/springSecurity%d{yyyy-MM-dd}.log.gz">
+        <RollingFile name="springRedisFile" fileName="F:/tutorial/logs/springRedis.log"
+                     filePattern="F:/tutorial/logs/springRedis%d{yyyy-MM-dd}.log.gz">
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="${PATTERN}"/>
@@ -35,8 +35,8 @@
         </RollingFile>
 
         <!--error日志-->
-        <RollingFile name="springSecurityErrorFile" fileName="F:/tutorial/logs/springSecurityError.log"
-                     filePattern="F:/tutorial/logs/springSecurityError_%d{yyyy-MM-dd}.log.gz">
+        <RollingFile name="springRedisErrorFile" fileName="F:/tutorial/logs/springRedisError.log"
+                     filePattern="F:/tutorial/logs/springRedisError_%d{yyyy-MM-dd}.log.gz">
             <!--控制台只输出level及以上级别的信息（onMatch）,其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="${PATTERN}"/>
@@ -65,8 +65,8 @@
         <root level="info">
             <appenderref ref="CONSOLE" />
             <appenderref ref="autoClearLogFile" />
-            <appenderref ref="springSecurityFile" />
-            <appenderref ref="springSecurityErrorFile" />
+            <appenderref ref="springRedisFile" />
+            <appenderref ref="springRedisErrorFile" />
         </root>
     </loggers>
 

@@ -25,6 +25,7 @@
         <module>tutorial_kafka</module>
         <module>tutorial_nginx</module>
         <module>tutorial_springsecurity</module>
+        <module>tutorial_oauth2</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -33,7 +34,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
     </properties>
 
     <parent>
@@ -154,6 +155,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--commons-pool2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.5.0</version>
         </dependency>
         <!--elasticsearch -->
         <dependency>

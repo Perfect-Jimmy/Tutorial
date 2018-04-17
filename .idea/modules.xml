@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/tutorial_mongo/tutorial_mongo.iml" filepath="$PROJECT_DIR$/tutorial_mongo/tutorial_mongo.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_netty/tutorial_netty.iml" filepath="$PROJECT_DIR$/tutorial_netty/tutorial_netty.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_nginx/tutorial_nginx.iml" filepath="$PROJECT_DIR$/tutorial_nginx/tutorial_nginx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_oauth2/tutorial_oauth2.iml" filepath="$PROJECT_DIR$/tutorial_oauth2/tutorial_oauth2.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_rabbitmq/tutorial_rabbitmq.iml" filepath="$PROJECT_DIR$/tutorial_rabbitmq/tutorial_rabbitmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_redis/tutorial_redis.iml" filepath="$PROJECT_DIR$/tutorial_redis/tutorial_redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_repository/tutorial_repository.iml" filepath="$PROJECT_DIR$/tutorial_repository/tutorial_repository.iml" />
