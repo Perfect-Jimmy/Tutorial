@@ -1,6 +1,6 @@
 package com.tutorial.thread;
 
-import com.tutorial.util.Constants;
+import com.tutorial.util.ConstantsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +48,6 @@ public class ThreadPoolBigDataController {
         threadTaskService.doTaskOne();;
         threadTaskService.doTaskTwo();
         threadTaskService.doTaskThree();
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 }

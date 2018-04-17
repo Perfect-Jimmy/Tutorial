@@ -2,7 +2,7 @@ package com.tutorial.start.controller;
 
 import com.tutorial.domain.Account;
 import com.tutorial.service.AccountService;
-import com.tutorial.util.Constants;
+import com.tutorial.util.ConstantsUtil;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
@@ -61,7 +61,7 @@ public class JwtTokenController {
                 tokenStr = new String(tokenDBEntity.getToken());
             }*/
         }
-            return Constants.FAILURE;
+            return ConstantsUtil.FAILURE;
     }
 
 
@@ -81,7 +81,7 @@ public class JwtTokenController {
                    .setIssuedAt(now)
                    .setIssuer("Online YAuth Builder")
                    .setExpiration(expiration)//设置失效时间
-                   .signWith(SignatureAlgorithm.HS256, Constants.SIGNING_KEY)//设置算法（必须
+                   .signWith(SignatureAlgorithm.HS256, ConstantsUtil.SIGNING_KEY)//设置算法（必须
                    .compact();//这个是全部设置完成后拼成jwt串的方法
     }
 

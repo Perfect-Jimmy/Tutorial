@@ -2,7 +2,7 @@ package com.tutorial.interceptor;
 
 import com.tutorial.domain.Account;
 import com.tutorial.service.AccountService;
-import com.tutorial.util.Constants;
+import com.tutorial.util.ConstantsUtil;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,7 +43,7 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
         }
         try{
             //获取jwt实体对象接口实例,获取jwt串里的subject参数,获取body以后可以获取到存入的信息
-            final Claims claims = Jwts.parser().setSigningKey(Constants.SIGNING_KEY)
+            final Claims claims = Jwts.parser().setSigningKey(ConstantsUtil.SIGNING_KEY)
                     .parseClaimsJws(authHeader).getBody();
 
             String subject = claims.getSubject();

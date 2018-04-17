@@ -1,7 +1,7 @@
 package com.tutorial.controller;
 
 import com.tutorial.domain.User;
-import com.tutorial.util.Constants;
+import com.tutorial.util.ConstantsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class RestfulTestController {
     @GetMapping("/user/{id}/{name}")
     public String queryUser1(@PathVariable("id")Long id,@PathVariable("name")String name){
         LOGGER.info("rest query user by id {},name {}",id,name);
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 
     /**
@@ -36,7 +36,7 @@ public class RestfulTestController {
     @GetMapping("/user")
     public String queryUser2(@RequestParam(value = "name",required = false)String name){
         LOGGER.info("rest query user by name {}",name);
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 
     /**
@@ -48,18 +48,18 @@ public class RestfulTestController {
     @PostMapping("/user")
     public String addUser1(@RequestBody User user){
         LOGGER.info("rest add user {}",user);
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 
     @PutMapping("/user")
     public String modifyUser(){
         LOGGER.info("rest modify user");
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 
     @DeleteMapping("/user")
     public String delUser(){
         LOGGER.info("rest delete user");
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 }

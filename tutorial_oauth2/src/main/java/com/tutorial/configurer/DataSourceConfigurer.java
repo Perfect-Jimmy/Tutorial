@@ -66,12 +66,6 @@ public class DataSourceConfigurer {
     }
 
 
-  /*  @Bean(name = "secondaryDataSource")
-    @Qualifier("secondaryDataSource")
-    public DataSource secondaryDataSource() {
-        return getDruidDataSource("root", "ysten123","jdbc:mysql://192.168.50.243:3306/test_s??characterEncoding=utf8&zeroDateTimeBehavior=convertToNull");
-    }*/
-
     /**
      * 公共类
      * @param username
@@ -97,15 +91,6 @@ public class DataSourceConfigurer {
         datasource.setValidationQuery(validationQuery);
         datasource.setTestWhileIdle(testWhileIdle);
         datasource.setTestOnBorrow(testOnBorrow);
-     // datasource.setTestOnReturn(testOnReturn);
-     // datasource.setPoolPreparedStatements(poolPreparedStatements);
-     // datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
-      /*  try {
-            datasource.setFilters(filters);
-        } catch (SQLException e) {
-            logger.error("druid configuration initialization filter : {0}", e);
-        }
-        datasource.setConnectionProperties(connectionProperties);*/
 
         return datasource;
     }

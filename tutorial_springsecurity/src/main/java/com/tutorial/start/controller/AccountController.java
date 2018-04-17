@@ -1,7 +1,7 @@
 package com.tutorial.start.controller;
 
 import com.tutorial.domain.Account;
-import com.tutorial.util.Constants;
+import com.tutorial.util.ConstantsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class AccountController {
             }
             return str.toString();
         }
-            return Constants.SUCCESS;
+            return ConstantsUtil.SUCCESS;
     }
 
 }

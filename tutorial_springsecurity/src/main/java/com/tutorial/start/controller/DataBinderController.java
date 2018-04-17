@@ -1,6 +1,6 @@
 package com.tutorial.start.controller;
 
-import com.tutorial.util.Constants;
+import com.tutorial.util.ConstantsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -28,7 +28,7 @@ public class DataBinderController {
     public String environmentWay(@PathVariable(value = "key") String key){
         String value = environment.getProperty(key);
         System.out.println(value);
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 
 

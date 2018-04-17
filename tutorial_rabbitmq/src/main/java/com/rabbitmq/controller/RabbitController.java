@@ -2,7 +2,7 @@ package com.rabbitmq.controller;
 
 import com.rabbitmq.Animal;
 import com.rabbitmq.configurer.Producer;
-import com.tutorial.util.Constants;
+import com.tutorial.util.ConstantsUtil;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StopWatch;
@@ -33,7 +33,7 @@ public class RabbitController {
         }
         stopWatch.stop();
         System.out.println(stopWatch.getTotalTimeMillis());
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 
 //--------fanout--------------------------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ public class RabbitController {
         Animal animal = new Animal();
         animal.setId(100L);
         producer.convertSendAndReceive_fanout(animal);
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 
 //--------topic----------------------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ public class RabbitController {
         Animal animal = new Animal();
         animal.setId(100L);
         producer.convertAndSend_topic(routingKey,animal);
-        return Constants.SUCCESS;
+        return ConstantsUtil.SUCCESS;
     }
 
 

@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
- * Created by Jimmy. 2018/1/24  15:51
+ * Created by Jimmy. 2018/4/17  15:51
  * 禁用mongo的自动配置
  */
 @SpringBootApplication(exclude={MongoAutoConfiguration.class,MongoDataAutoConfiguration.class})
