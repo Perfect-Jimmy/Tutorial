@@ -23,6 +23,7 @@
       <module fileurl="file://$PROJECT_DIR$/tutorial_springcloud/tutorial_springcloud.iml" filepath="$PROJECT_DIR$/tutorial_springcloud/tutorial_springcloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_springsecurity/tutorial_springsecurity.iml" filepath="$PROJECT_DIR$/tutorial_springsecurity/tutorial_springsecurity.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_util/tutorial_util.iml" filepath="$PROJECT_DIR$/tutorial_util/tutorial_util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_webflux/tutorial_webflux.iml" filepath="$PROJECT_DIR$/tutorial_webflux/tutorial_webflux.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_websocket/tutorial_websocket.iml" filepath="$PROJECT_DIR$/tutorial_websocket/tutorial_websocket.iml" />
     </modules>
   </component>
