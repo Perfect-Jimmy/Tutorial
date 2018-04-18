@@ -45,7 +45,7 @@ public class CustomerWebMvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        System.out.println("-----------fast json-------------------");
+   //     System.out.println("-----------fast json-------------------");
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(
