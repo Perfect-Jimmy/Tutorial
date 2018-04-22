@@ -20,7 +20,7 @@ import java.util.UUID;
  */
 @Component
 public class Producer implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
+    private static final Logger logger = LoggerFactory.getLogger(Producer.class);
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -44,9 +44,9 @@ public class Producer implements RabbitTemplate.ConfirmCallback, RabbitTemplate.
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
         if (ack) {
-            LOGGER.info("消息发送成功:{}",correlationData);
+            logger.info("消息发送成功:{}",correlationData);
         } else {
-            LOGGER.info("消息发送失败:{}",cause);
+            logger.info("消息发送失败:{}",cause);
         }
 
     }
@@ -63,7 +63,7 @@ public class Producer implements RabbitTemplate.ConfirmCallback, RabbitTemplate.
      */
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-        LOGGER.info("消息发送失败:{}",message.getMessageProperties().getCorrelationId());
+        logger.info("消息发送失败:{}",message.getMessageProperties().getCorrelationId());
     }
 
 
@@ -97,7 +97,7 @@ public class Producer implements RabbitTemplate.ConfirmCallback, RabbitTemplate.
     public void convertSendAndReceive_direct(Object object){
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
         String response = rabbitTemplate.convertSendAndReceive(RabbitExchangeType.DIRECT.name(), "key.direct", object, correlationData).toString();
-        LOGGER.info("direct 消费者响应:{},消息处理完成",response);
+        logger.info("direct 消费者响应:{},消息处理完成",response);
     }
 
 //--------------fanout--------------------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ public class Producer implements RabbitTemplate.ConfirmCallback, RabbitTemplate.
     public void convertSendAndReceive_fanout(Object object) {
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
         String response = rabbitTemplate.convertSendAndReceive(RabbitExchangeType.FANOUT.name(), "", object, correlationData).toString();
-        LOGGER.info("fanout 消费者响应:{},消息处理完成", response);
+        logger.info("fanout 消费者响应:{},消息处理完成", response);
     }
 
 //--------------topic--------------------------------------------------------------------------------------------

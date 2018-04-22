@@ -26,7 +26,6 @@
         <module>tutorial_nginx</module>
         <module>tutorial_springsecurity</module>
         <module>tutorial_oauth2</module>
-        <module>tutorial_webflux</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -202,17 +201,6 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
             <version>3.0.2.RELEASE</version>
-        </dependency>
-        <!--webflux -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <!--reactor-test -->
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <!--性能测试依赖-->
       <!--  <dependency>
