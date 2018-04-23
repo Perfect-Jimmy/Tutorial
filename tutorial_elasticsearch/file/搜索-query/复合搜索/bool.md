@@ -187,7 +187,7 @@ curl -H "Content-Type:application/json" -X GET 'localhost:9200/es/blog/_search?p
 分析:  
 
 **
-默认情况下,should是可以不匹配任何一个的,比如上面的搜索中，this is java blog,就不匹配任何一个should条件
+默认情况下,should是可以不匹配任何一个的,比如上面的搜索中,this is java blog,就不匹配任何一个should条件
 但是有个例外的情况,如果没有must的话,那么should中必须至少匹配一个才可以
 比如下面的搜索,should中有4个条件,默认情况下,只要满足其中一个条件,就可以匹配作为结果返回
 但是可以精准控制,should的4个条件中,至少匹配几个才能作为结果返回
@@ -196,10 +196,10 @@ GET /forum/article/_search
   "query": {
     "bool": {
       "should": [
-        { "match": { "title": "java" }},
-        { "match": { "title": "elasticsearch"   }},
-        { "match": { "title": "hadoop"   }},
-	{ "match": { "title": "spark"   }}
+        { "match": { "title": "java"}},
+        { "match": { "title": "elasticsearch"}},
+        { "match": { "title": "hadoop"}},
+	    { "match": { "title": "spark"}}
       ],
       "minimum_should_match": 3 
     }
