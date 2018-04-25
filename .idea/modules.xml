@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Tutorial.iml" filepath="$PROJECT_DIR$/.idea/Tutorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_cloud_client1/tutorial_cloud_client1.iml" filepath="$PROJECT_DIR$/tutorial_cloud_client1/tutorial_cloud_client1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_cloud_client2/tutorial_cloud_client2.iml" filepath="$PROJECT_DIR$/tutorial_cloud_client2/tutorial_cloud_client2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_cloud_register/tutorial_cloud_register.iml" filepath="$PROJECT_DIR$/tutorial_cloud_register/tutorial_cloud_register.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tutorial_cloud_server/tutorial_cloud_server.iml" filepath="$PROJECT_DIR$/tutorial_cloud_server/tutorial_cloud_server.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" filepath="$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" filepath="$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_io/tutorial_io.iml" filepath="$PROJECT_DIR$/tutorial_io/tutorial_io.iml" />
@@ -19,7 +23,6 @@
       <module fileurl="file://$PROJECT_DIR$/tutorial_service/tutorial_service.iml" filepath="$PROJECT_DIR$/tutorial_service/tutorial_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_spring/tutorial_spring.iml" filepath="$PROJECT_DIR$/tutorial_spring/tutorial_spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_springboot/tutorial_springboot.iml" filepath="$PROJECT_DIR$/tutorial_springboot/tutorial_springboot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tutorial_springcloud/tutorial_springcloud.iml" filepath="$PROJECT_DIR$/tutorial_springcloud/tutorial_springcloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_springsecurity/tutorial_springsecurity.iml" filepath="$PROJECT_DIR$/tutorial_springsecurity/tutorial_springsecurity.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_util/tutorial_util.iml" filepath="$PROJECT_DIR$/tutorial_util/tutorial_util.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_websocket/tutorial_websocket.iml" filepath="$PROJECT_DIR$/tutorial_websocket/tutorial_websocket.iml" />
