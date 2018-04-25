@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Tutorial.iml" filepath="$PROJECT_DIR$/.idea/Tutorial.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tutorial.iml" filepath="$PROJECT_DIR$/tutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" filepath="$PROJECT_DIR$/tutorial_domain/tutorial_domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" filepath="$PROJECT_DIR$/tutorial_elasticsearch/tutorial_elasticsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/tutorial_io/tutorial_io.iml" filepath="$PROJECT_DIR$/tutorial_io/tutorial_io.iml" />
