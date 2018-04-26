@@ -205,6 +205,11 @@
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
             <version>3.0.2.RELEASE</version>
         </dependency>
+        <!--quartz-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
         <!--性能测试依赖-->
       <!--  <dependency>
             <groupId>org.databene</groupId>
