@@ -5,6 +5,7 @@ import com.tutorial.quartz.service.QuartzJobService;
 import com.tutorial.util.ConstantsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,8 +17,9 @@ public class QuartzController {
     private QuartzJobService quartzJobService;
 
     @RequestMapping("/addJob")
-    public String addQuartzJob(){
-        quartzJobService.addJob("myjob2","myjob", CustomJob.class,"myjob2Trigger","myjobTrigger", "0/3 * * * * ?","hha");
+    public String addQuartzJob(@RequestParam(value = "name") String str){
+        quartzJobService.addJob(str,"myjob", CustomJob.class,str,
+                "myjobTrigger", "0/3 * * * * ?",str);
         return ConstantsUtil.SUCCESS;
     }
 }
