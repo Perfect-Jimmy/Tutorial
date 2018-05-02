@@ -103,3 +103,32 @@ spring.quartz.jdbc.initialize-schema=embedded
 5. 动态启动所有
 
 
+
+
+
+#### 其他
+@Bean  
+  public SchedulerFactoryBean schedulerFactory(){  
+      SchedulerFactoryBean factoryBean = new SchedulerFactoryBean();  
+      /*用于Quartz集群,启动时更新已存在的Job*/  
+      factoryBean.setOverwriteExistingJobs(true);  
+      /*定时任务开始启动后延迟5秒开始*/  
+      factoryBean.setStartupDelay(5);  
+      return factoryBean;  
+  }  
+  
+  
+  
+  
+  /得到调度器  
+      Scheduler scheduler = schedulerFactoryBean.getScheduler();  
+      
+      
+      
+判断是否有触发器-trigger存在其中，因为有可能说上次的触发器 并没有删除
+
+//获得触发器  
+    TriggerKey triggerKey = TriggerKey.triggerKey(config.getName(), config.getGroup());  
+    CronTrigger trigger = (CronTrigger)scheduler.getTrigger(triggerKey);  
+
+

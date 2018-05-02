@@ -19,4 +19,25 @@ public interface QuartzJobService {
      * @return
      */
     Date addJob(String jobName,String jobGroupName,Class jobClass,String triggerName,String triggerGroupName,String cronExpression,String str);
+
+    /**
+     * 修改Job
+     * @param jobName
+     * @param jobGroupName
+     * @param jobClass
+     * @param triggerName
+     * @param triggerGroupName
+     * @param cronExpression
+     * @param str
+     */
+    void modifyJob(String jobName,String jobGroupName,Class jobClass,String triggerName,String triggerGroupName,String cronExpression,String str);
+
+
+    /**
+     * 删除Job
+     * @param jobName
+     * @param jobGroupName
+     */
+    void deleteJob(String jobName,String jobGroupName);
+
 }

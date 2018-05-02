@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
  * Created by Jimmy. 2018/4/25  11:09
  */
 @SpringBootApplication(exclude={MongoAutoConfiguration.class,MongoDataAutoConfiguration.class,JpaRepositoriesAutoConfiguration.class,DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class,DruidDataSourceAutoConfigure.class})
-
+//@EnableEurekaServer
 public class CloudStart {
 
     public static void main(String[] args) {

@@ -23,7 +23,43 @@
 
     <dependencies>
 
+
     </dependencies>
+
+<!--
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+        </dependency>
+       &lt;!&ndash; springCloud 配置&ndash;&gt;
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+             <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+             <version>1.4.4.RELEASE</version>
+         </dependency>
+         <dependency>
+             <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+             <version>1.4.4.RELEASE</version>
+         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+            <version>1.4.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>1.4.4.RELEASE</version>
+        </dependency>
+    </dependencies>
+-->
 
 
 </project>
