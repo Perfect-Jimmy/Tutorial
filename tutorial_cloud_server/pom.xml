@@ -21,12 +21,12 @@
     </properties>
 
  <!--   https://spring.io/blog/2018/04/25/spring-cloud-finchley-rc1-has-been-released-->
-    <dependencies>
+   <!-- <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
-    </dependencies>
+    </dependencies>-->
 
 <!--
 
@@ -63,7 +63,7 @@
     </dependencies>
 -->
 
-    <repositories>
+<!--    <repositories>
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -99,5 +99,5 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
-    </pluginRepositories>
+    </pluginRepositories>-->
 </project>
