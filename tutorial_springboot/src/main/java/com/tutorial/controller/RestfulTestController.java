@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/rest")
 public class RestfulTestController {
-    private Logger LOGGER = LoggerFactory.getLogger(RestfulTestController.class);
+    private Logger logger = LoggerFactory.getLogger(RestfulTestController.class);
 
     /**
      * @PathVariable
@@ -23,7 +23,7 @@ public class RestfulTestController {
      */
     @GetMapping("/user/{id}/{name}")
     public String queryUser1(@PathVariable("id")Long id,@PathVariable("name")String name){
-        LOGGER.info("rest query user by id {},name {}",id,name);
+        logger.info("rest query user by id {},name {}",id,name);
         return ConstantsUtil.SUCCESS;
     }
 
@@ -35,7 +35,7 @@ public class RestfulTestController {
      */
     @GetMapping("/user")
     public String queryUser2(@RequestParam(value = "name",required = false)String name){
-        LOGGER.info("rest query user by name {}",name);
+        logger.info("rest query user by name {}",name);
         return ConstantsUtil.SUCCESS;
     }
 
@@ -47,19 +47,19 @@ public class RestfulTestController {
      */
     @PostMapping("/user")
     public String addUser1(@RequestBody User user){
-        LOGGER.info("rest add user {}",user);
+        logger.info("rest add user {}",user);
         return ConstantsUtil.SUCCESS;
     }
 
     @PutMapping("/user")
     public String modifyUser(){
-        LOGGER.info("rest modify user");
+        logger.info("rest modify user");
         return ConstantsUtil.SUCCESS;
     }
 
     @DeleteMapping("/user")
     public String delUser(){
-        LOGGER.info("rest delete user");
+        logger.info("rest delete user");
         return ConstantsUtil.SUCCESS;
     }
 }
