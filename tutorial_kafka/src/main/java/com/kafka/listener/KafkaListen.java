@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class KafkaListen {
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaListen.class);
 
-    @KafkaListener(topics = {"test-topic"})
+    @KafkaListener(topics = {"viper-search-ns"})
     public void listen(ConsumerRecord<?, ?> cr) throws Exception {
         LOGGER.info("{} - {} : {}", cr.topic(), cr.key(), cr.value());
     }
