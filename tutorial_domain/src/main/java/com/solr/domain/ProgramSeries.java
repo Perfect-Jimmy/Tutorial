@@ -24,6 +24,9 @@ public class ProgramSeries implements Serializable {
     private String name;
 
     @Field
+    private String nameStr;
+
+    @Field
     private Date publishDate;
 
 }
