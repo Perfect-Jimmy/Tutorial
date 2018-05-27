@@ -18,7 +18,8 @@ public class ProgramSeries implements Serializable {
     private static final long serialVersionUID = 6972281365024142388L;
 
     @Id
-    private Long id;
+    @Field
+    private String id;
 
     @Field
     private String name;
@@ -26,7 +27,16 @@ public class ProgramSeries implements Serializable {
     @Field
     private String nameStr;
 
-    @Field
+  //  @Field
     private Date publishDate;
 
+    @Override
+    public String toString() {
+        return "ProgramSeries{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", nameStr='" + nameStr + '\'' +
+                ", publishDate=" + publishDate +
+                '}';
+    }
 }
