@@ -1,4 +1,4 @@
-package com.canal.test;
+package com.canal.listener;
 
 import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.client.CanalConnectors;
@@ -6,18 +6,35 @@ import com.alibaba.otter.canal.protocol.CanalEntry.*;
 import com.alibaba.otter.canal.protocol.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
 
 import java.net.InetSocketAddress;
 import java.util.List;
 
 /**
- * Created by Jimmy. 2018/5/29  14:58
- * insert into book(name) values('test');
+ * Created by Jimmy. 2018/5/29  16:56
  */
-public class CanalTest {
-    private static final Logger logger = LoggerFactory.getLogger(CanalTest.class);
+@Component
+public class CanalListener implements ApplicationListener<ApplicationReadyEvent> {
 
-    public static void main(String[] args) {
+    private static final Logger logger = LoggerFactory.getLogger(CanalListener.class);
+
+    /**
+     * Spring 启动执行
+     * @param applicationReadyEvent 启动事件
+     */
+    @Override
+    public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
+        this.sync();
+        logger.info("==========BinlogStartUpSuccess==========");
+    }
+
+    /**
+     * MysqlBinlog分析同步方法
+     */
+    public void sync() {
         CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("192.168.50.247",
                 11111), "search", "canal", "canal");
         int batchSize = 1000;
@@ -41,22 +58,19 @@ public class CanalTest {
                 }
                 // 提交确认
                 connector.ack(batchId);
-                //connector.rollback(batchId); // 处理失败, 回滚数据
+                // connector.rollback(batchId); // 处理失败, 回滚数据
             }
         } finally {
             connector.disconnect();
         }
     }
 
-
     /**
      * 打印记录
      * @param entrys 记录
      */
-    private static void printEntry(List<Entry> entrys) {
+    private void printEntry( List<Entry> entrys) {
         for (Entry entry : entrys) {
-            System.out.println(entry.getEntryType());
-            logger.info(""+entry.getEntryType());
             if (entry.getEntryType() == EntryType.TRANSACTIONBEGIN || entry.getEntryType() == EntryType.TRANSACTIONEND) {
                 continue;
             }
@@ -71,10 +85,6 @@ public class CanalTest {
             }
             EventType eventType = rowChage.getEventType();
             logger.info(String.format("================> binlog[%s:%s] , name[%s,%s] , eventType : %s",
-                    entry.getHeader().getLogfileName(), entry.getHeader().getLogfileOffset(),
-                    entry.getHeader().getSchemaName(), entry.getHeader().getTableName(),
-                    eventType));
-            System.out.println(String.format("================> binlog[%s:%s] , name[%s,%s] , eventType : %s",
                     entry.getHeader().getLogfileName(), entry.getHeader().getLogfileOffset(),
                     entry.getHeader().getSchemaName(), entry.getHeader().getTableName(),
                     eventType));
@@ -105,4 +115,48 @@ public class CanalTest {
         }
     }
 
+    /**
+     * 同步插入到Redis
+     * @param columns 列对象
+     * @param tableName 表命
+     */
+    private void redisInsert( List<Column> columns,String tableName){
+       /* JSONObject json=new JSONObject();
+        for (Column column : columns) {
+            json.put(column.getName(), column.getValue());
+        }
+        if(columns.size()>0){
+            iRedisService.set(tableName+":"+ columns.get(0).getValue(),json.toJSONString());
+        }*/
+    }
+
+    /**
+     * 同步更新到Redis
+     * @param columns 列对象
+     * @param tableName 表命
+     */
+    private void redisUpdate( List<Column> columns,String tableName){
+      /*  JSONObject json=new JSONObject();
+        for (Column column : columns) {
+            json.put(column.getName(), column.getValue());
+        }
+        if(columns.size()>0){
+            iRedisService.set(tableName+":"+ columns.get(0).getValue(),json.toJSONString());
+        }*/
+    }
+
+    /**
+     * 同步从Redis删除
+     * @param columns 列对象
+     * @param tableName 表命
+     */
+    private void redisDelete( List<Column> columns,String tableName){
+       /* JSONObject json=new JSONObject();
+        for (Column column : columns) {
+            json.put(column.getName(), column.getValue());
+        }
+        if(columns.size()>0){
+            iRedisService.del(tableName+":"+ columns.get(0).getValue());
+        }*/
+    }
 }
