@@ -67,7 +67,7 @@ canal.instance.dbUsername=canal
 canal.instance.dbPassword=canal
 canal.instance.defaultDatabaseName=
 canal.instance.connectionCharset=UTF-8
-# table regex
+# table regex   canal.instance.filter.regex= test_s.book
 canal.instance.filter.regex= .*\\..*
 # table black regex
 canal.instance.filter.black.regex=
