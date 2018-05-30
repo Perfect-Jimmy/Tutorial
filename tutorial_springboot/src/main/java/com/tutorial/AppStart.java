@@ -19,6 +19,8 @@ public class AppStart {
        /* Binder binder = Binder.get(context.getEnvironment());
         List<CityParam> citys = binder.bind("spring.city", Bindable.listOf(CityParam.class)).get();
         System.out.println(citys);*/
+
+
     }
 
 }
