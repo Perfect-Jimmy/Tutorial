@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationEvent;
  * 发送邮件事件
  */
 public class EmailRegisterEvent extends ApplicationEvent {
-    private Logger logger = LoggerFactory.getLogger(EmailRegisterEvent.class);
+    private static final Logger logger = LoggerFactory.getLogger(EmailRegisterEvent.class);
 
     private static final String EVENT_NAME = "email_event";
 
