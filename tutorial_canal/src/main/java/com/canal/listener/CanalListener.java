@@ -38,7 +38,33 @@ public class CanalListener implements ApplicationListener<ApplicationReadyEvent>
         CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("192.168.50.247",
                 11111), "search", "canal", "canal");
         int batchSize = 1000;
-        try {
+        long batchId = 0;
+        try{
+            connector.connect();
+            connector.subscribe();
+            connector.rollback();
+            while(true){
+                // 获取指定数量的数据
+                Message message = connector.getWithoutAck(batchSize);
+                batchId = message.getId();
+                int size = message.getEntries().size();
+                if(batchId == -1 || size == 0){
+                    Thread.sleep(1000);
+                    connector.ack(batchId); // 提交确认
+                }else{
+                    printEntry(message.getEntries());
+                    connector.ack(batchId); // 提交确认
+                }
+            }
+        }catch (Exception e){
+            logger.error("Method:sync read canal message error , exception : ", e);
+            // 处理失败, 按偏移量回滚数据
+            connector.rollback(batchId);
+        }finally {
+            connector.disconnect();
+        }
+
+       /* try {
             connector.connect();
             connector.subscribe();
             connector.rollback();
@@ -62,7 +88,7 @@ public class CanalListener implements ApplicationListener<ApplicationReadyEvent>
             }
         } finally {
             connector.disconnect();
-        }
+        }*/
     }
 
     /**
