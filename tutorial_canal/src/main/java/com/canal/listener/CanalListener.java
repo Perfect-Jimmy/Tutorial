@@ -41,7 +41,7 @@ public class CanalListener implements ApplicationListener<ApplicationReadyEvent>
         long batchId = 0;
         try{
             connector.connect();
-            connector.subscribe();
+            connector.subscribe();// connector.subscribe("cos.mongo_epg_group_ps,cos.cis_cp_content");
             connector.rollback();
             while(true){
                 // 获取指定数量的数据
