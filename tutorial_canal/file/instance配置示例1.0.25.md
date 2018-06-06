@@ -38,7 +38,7 @@ h2.mv.db  instance.properties  meta.dat
 [root@DEV-14 search]# vi instance.properties 
 [root@DEV-14 search]# vi instance.properties 
 [root@DEV-14 search]# vi instance.properties 
-
+--------------------------------------------------------------------------------------------
 #################################################
 ## mysql serverId
 canal.instance.mysql.slaveId=12345678
