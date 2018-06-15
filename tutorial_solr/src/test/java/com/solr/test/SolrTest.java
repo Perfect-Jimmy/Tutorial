@@ -32,6 +32,36 @@ public class SolrTest {
     @Autowired
     private SolrClient solrClient;
 
+
+    @Test
+    public void queryProgramSeries() throws IOException, SolrServerException {
+        System.out.println(solrClient.getClass().toString());
+        SolrQuery query = new SolrQuery();// 查询
+        query.setParam("q","name:玩命剧组");
+
+        query.setHighlight(true); // 开启高亮
+        query.addHighlightField("name"); // 高亮字段
+        query.setHighlightSimplePre("<font color='red'>"); // 高亮单词的前缀
+        query.setHighlightSimplePost("</font>"); // 高亮单词的后缀
+
+        QueryResponse response = solrClient.query("programSeries",query);
+        SolrDocumentList solrDocumentList = response.getResults();
+        System.out.println(solrDocumentList.size());
+        //
+        Map<String, Map<String, List<String>>> highlightresult = response.getHighlighting();
+
+      /*  for(ProgramSeries ps:programSeriesList){
+            System.out.println(ps.getId()+"---"+ps.getName());
+            if(highlightresult.get(ps.getId()) != null){
+                Map<String,List<String >> high = highlightresult.get(ps.getId());
+                System.out.println("highName:"+high.get("name").get(0));
+            }
+        }*/
+    }
+
+
+
+
     //nameStr string不分词
     @Test
     public void query() throws IOException, SolrServerException {

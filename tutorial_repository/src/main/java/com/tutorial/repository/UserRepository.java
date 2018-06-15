@@ -104,4 +104,5 @@ public interface UserRepository extends JpaRepository<User, Long>,JpaSpecificati
     @Modifying
     @Query("update User u set u.userName = :#{#user.userName} where u.id = :#{#user.id}")
     void modifyUser(User user);
+
 }
