@@ -30,7 +30,7 @@ cp -r server/solr-webapp/webapp  /usr/local/java/apache-tomcat-8.5.29/webapps/so
 ```
 5. 将server/lib/metrics* 开头的5个jar复制到 /usr/local/java/apache-tomcat-8.5.29/webapps/solr7/WEB-INF/lib/下
 6. 把server/resources/目录下的log4j.properties,复制到的solr7的WEB-INF/,要创建一个classes的目录
-7. 创建solr home:复制并重命名solr-7.3.0/servier/solr为/usr/local/solr_home
+7. 创建solr home:复制并重命名solr-7.3.0/server/solr为/usr/local/solr_home
 8. 修改tomcat里solr7/WEB-INF/web.xml文件,找到solr/home的env-entry,打开注释,修改env-entry-value值为新建的solr_home,
    并将如下注释掉.
 ```

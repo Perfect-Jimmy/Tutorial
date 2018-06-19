@@ -44,9 +44,9 @@ public class RedisConfigurer {
      * @return
      */
     @Bean
-    public RedisTemplate<String,String> redisTemplate(){
+    public RedisTemplate<String,Object> redisTemplate(){
         logger.info("redisTemplate 初始化...");
-        RedisTemplate<String,String> redisTemplate = new StringRedisTemplate();
+        RedisTemplate<String,Object> redisTemplate = new RedisTemplate<String, Object>();
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();

@@ -9,6 +9,7 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.util.NamedList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,26 +38,29 @@ public class SolrTest {
     public void queryProgramSeries() throws IOException, SolrServerException {
         System.out.println(solrClient.getClass().toString());
         SolrQuery query = new SolrQuery();// 查询
-        query.setParam("q","name:玩命剧组");
+        query.setParam("q","programPinyin:yxgz");
+       /* query.setParam("defType","edismax");
+        query.setParam("mm","10");*/
+
 
         query.setHighlight(true); // 开启高亮
-        query.addHighlightField("name"); // 高亮字段
+        query.addHighlightField("programPinyin"); // 高亮字段
         query.setHighlightSimplePre("<font color='red'>"); // 高亮单词的前缀
         query.setHighlightSimplePost("</font>"); // 高亮单词的后缀
-
+       /* query.setHighlightFragsize(1);
+        query.setHighlightFragsize(15);
+        query.setHighlightRequireFieldMatch(true);*/
         QueryResponse response = solrClient.query("programSeries",query);
         SolrDocumentList solrDocumentList = response.getResults();
         System.out.println(solrDocumentList.size());
-        //
-        Map<String, Map<String, List<String>>> highlightresult = response.getHighlighting();
 
-      /*  for(ProgramSeries ps:programSeriesList){
-            System.out.println(ps.getId()+"---"+ps.getName());
-            if(highlightresult.get(ps.getId()) != null){
-                Map<String,List<String >> high = highlightresult.get(ps.getId());
-                System.out.println("highName:"+high.get("name").get(0));
-            }
-        }*/
+        NamedList<Object> highlightResult = response.getResponse();
+        NamedList highlighting = (NamedList) highlightResult.get("highlighting");
+        for (int i = 0; i <highlighting.size() ; i++) {
+            System.out.println(highlighting.getName(i)+"："+highlighting.getVal(i));
+        }
+
+
     }
 
 
