@@ -142,6 +142,17 @@
             <artifactId>poi</artifactId>
             <version>3.17</version>
         </dependency>
+        <!--poi帮助类 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>3.17</version>
+        </dependency>
         <!--guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -181,7 +192,8 @@
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
-            <version>6.1.1</version>
+           <!-- <version>6.1.1</version>-->
+            <version>6.3.0</version>
         </dependency>
         <dependency>
             <groupId>io.searchbox</groupId>
